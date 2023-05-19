@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "721432913425",
+    "firebase_url": "https://safety-kick-default-rtdb.firebaseio.com",
+    "project_id": "safety-kick",
+    "storage_bucket": "safety-kick.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:721432913425:android:6c9c6c11a6fa712ee5f3b0",
+        "android_client_info": {
+          "package_name": "com.example.safety_kick"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "721432913425-6el9rmc7f0ju1agog8m28489h4q6o8eg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.safety_kick",
+            "certificate_hash": "4a92a4fbbf1314a1fcc32e662927920f33d79a2c"
+          }
+        },
+        {
+          "client_id": "721432913425-p4lfj8nokta3s1nlf8promhug8t1a8od.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW_MBksxLIaceyLCVBsFRbMbDECzXhJoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "721432913425-p4lfj8nokta3s1nlf8promhug8t1a8od.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
