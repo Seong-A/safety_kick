@@ -45,7 +45,7 @@ public class JoinActivity extends AppCompatActivity {
                             if(task.isSuccessful()){
                                 User user = new User(name, email,password); // User class should be defined
                                 String uid = task.getResult().getUser().getUid();
-                                databaseReference.child("users").child(uid).setValue(user);
+                                databaseReference.child("users").child(uid).child(name).setValue(user);
 
                                 Toast.makeText(JoinActivity.this, "회원가입을 축하합니다!!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
@@ -55,7 +55,12 @@ public class JoinActivity extends AppCompatActivity {
                             }
                         });
             }
+            public void writeNewUser(String uid, String name, String email, String password) {
+                User user = new User(name, email,password); // User class should be defined
+                databaseReference.child("users").child(uid).child(name).setValue(user);
+            }
         });
     }
+
 
 }
