@@ -60,7 +60,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/btn_background"
-        android:backgroundTint="#B9E494"
         android:text="LOGIN"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
@@ -75,7 +74,6 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:background="@drawable/btn_background"
-        android:backgroundTint="#B9E494"
         android:text="google"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
@@ -89,7 +87,6 @@
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:background="@drawable/btn_background"
-        android:backgroundTint="#B9E494"
         android:text="SIGN UP"
         android:textColor="@android:color/white"
         android:textSize="20sp" />

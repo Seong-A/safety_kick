@@ -2,6 +2,7 @@ package com.example.safety_kick;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.net.Uri;
@@ -18,13 +19,18 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class LoginActivity extends AppCompatActivity {
@@ -52,6 +58,32 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        //추가 내용
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        String userId = user.getUid();
+        DatabaseReference userRef = databaseReference.child("users").child(userId);
+
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    String displayName = dataSnapshot.child("displayName").getValue(String.class);
+                    if (displayName != null) {
+                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                        intent.putExtra("name", displayName);
+                        startActivity(intent);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // 데이터베이스에서 데이터를 가져오지 못한 경우 처리
+                Toast.makeText(LoginActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         //일반 로그인
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
         //회원가입
         findViewById(R.id.signUp_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +117,7 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
-        // Configure Google Sign In
+        // 구글
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
