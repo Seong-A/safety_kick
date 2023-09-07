@@ -44,44 +44,45 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleSignInAccount gsa;
     private DatabaseReference databaseReference;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         emailEdit = findViewById(R.id.email_edit);
         passwordEdit = findViewById(R.id.password_edit);
-
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        //추가 내용
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        String userId = user.getUid();
-        DatabaseReference userRef = databaseReference.child("users").child(userId);
+        checkAndUpdateUserName();
+    }
 
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.exists()) {
-                    String displayName = dataSnapshot.child("displayName").getValue(String.class);
-                    if (displayName != null) {
-                        Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
-                        intent.putExtra("name", displayName);
-                        startActivity(intent);
+    private void checkAndUpdateUserName() {
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if (user != null) {
+            String userId = user.getUid();
+            DatabaseReference userRef = databaseReference.child("users").child(userId);
+
+            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        String displayName = dataSnapshot.child("displayName").getValue(String.class);
+                        if (displayName != null) {
+                            Button userButton = findViewById(R.id.user_btn);
+                            userButton.setText(displayName);
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                // 데이터베이스에서 데이터를 가져오지 못한 경우 처리
-                Toast.makeText(LoginActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
+
+
 
 
         //일반 로그인
@@ -96,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 FirebaseUser user = firebaseAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                                Intent intent = new Intent(LoginActivity.this, LoginSuccessActivity.class);
                                 startActivity(intent);
                                 // TODO: Navigate to the next screen
                             } else {
@@ -147,9 +148,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach a listener.
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
@@ -192,7 +191,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
 //                            updateUI(user);
                     } else {
-                        // If sign in fails, display a message to the user.
+
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                         Toast.makeText(LoginActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
