@@ -19,19 +19,13 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -54,38 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        checkAndUpdateUserName();
-    }
 
-    private void checkAndUpdateUserName() {
-        FirebaseUser user = firebaseAuth.getCurrentUser();
-        if (user != null) {
-            String userId = user.getUid();
-            DatabaseReference userRef = databaseReference.child("users").child(userId);
-
-            userRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists()) {
-                        String displayName = dataSnapshot.child("displayName").getValue(String.class);
-                        if (displayName != null) {
-                            Button userButton = findViewById(R.id.user_btn);
-                            userButton.setText(displayName);
-                        }
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(LoginActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
-                }
-            });
-        }
-
-
-
-
-        //일반 로그인
+        // 일반 로그인
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -95,11 +59,9 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, task -> {
                             if (task.isSuccessful()) {
-                                FirebaseUser user = firebaseAuth.getCurrentUser();
                                 Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, LoginSuccessActivity.class);
                                 startActivity(intent);
-                                // TODO: Navigate to the next screen
                             } else {
                                 Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
                             }
@@ -107,8 +69,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-        //회원가입
+        // 회원가입
         findViewById(R.id.signUp_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,7 +77,6 @@ public class LoginActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
 
         // 구글
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -130,20 +90,19 @@ public class LoginActivity extends AppCompatActivity {
         google_btn.setOnClickListener(view -> {
             // 기존에 로그인 했던 계정을 확인한다.
             gsa = GoogleSignIn.getLastSignedInAccount(LoginActivity.this);
-            if (gsa != null) // 로그인 되있는 경우
+            if (gsa != null) { // 로그인 되있는 경우
                 Toast.makeText(LoginActivity.this, R.string.status_login, Toast.LENGTH_SHORT).show();
-            else
+            } else {
                 signIn();
+            }
         });
-
     }
-
-
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -166,9 +125,9 @@ public class LoginActivity extends AppCompatActivity {
                 String personEmail = acct.getEmail();
                 String personId = acct.getId();
 
-                Log.d(TAG, "handleSignInResult:personName "+personName);
-                Log.d(TAG, "handleSignInResult:personEmail "+personEmail);
-                Log.d(TAG, "handleSignInResult:personId "+personId);
+                Log.d(TAG, "handleSignInResult:personName " + personName);
+                Log.d(TAG, "handleSignInResult:personEmail " + personEmail);
+                Log.d(TAG, "handleSignInResult:personId " + personId);
             }
         } catch (ApiException e) {
             // The ApiException status code indicates the detailed failure reason.
@@ -189,20 +148,16 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-//                            updateUI(user);
+                        // updateUI(user);
                     } else {
-
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                         Toast.makeText(LoginActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
-//                            updateUI(null);
+                        // updateUI(null);
                     }
                 });
     }
+
     private void updateUI(FirebaseUser user) {
-
+        // 사용자 인터페이스 업데이트
     }
-
-
-
-    }
-
+}
