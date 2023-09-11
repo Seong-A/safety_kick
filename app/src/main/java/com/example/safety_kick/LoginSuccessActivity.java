@@ -49,6 +49,14 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.find_kick).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginSuccessActivity.this, MypageActivity.class);
+                startActivity(intent);
+            }
+        });
+
         checkAndUpdateUserName(userTextView);
     }
 

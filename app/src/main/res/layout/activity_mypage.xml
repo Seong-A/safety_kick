@@ -49,10 +49,11 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
-            android:gravity=""
-            android:text="   ✍️  회원정보수정"
+            android:gravity="center_vertical"
+            android:text="✍️ 회원정보수정"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:padding="20dp" />
 
         <TextView
             android:id="@+id/drive_list"
@@ -62,10 +63,11 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
-            android:gravity=""
-            android:text="   🛴  주행내역"
+            android:gravity="center_vertical"
+            android:text="🛴 주행내역"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:padding="20dp" />
 
         <TextView
             android:id="@+id/payment_method"
@@ -75,10 +77,11 @@
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
-            android:gravity=""
-            android:text="   💳  결제수단"
+            android:gravity="center_vertical"
+            android:text="💳 결제수단"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:padding="20dp" />
 
 
 

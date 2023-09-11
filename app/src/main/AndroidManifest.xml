@@ -48,6 +48,7 @@
         </activity>
         <activity android:name=".LoginSuccessActivity" />
         <activity android:name=".MypageActivity" />
+        <activity android:name=".MapActivity" />
 
 
     </application>
