@@ -6,12 +6,14 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.safety_kick.R;
-import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 
 public class HomeActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,15 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.mypage_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                Toast.makeText(HomeActivity.this, "로그인을 해주세요!!", Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -48,6 +59,14 @@ public class HomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
                 Toast.makeText(HomeActivity.this, "로그인을 해주세요!!", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.service_center).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ServiceActivity.class);
                 startActivity(intent);
             }
         });
