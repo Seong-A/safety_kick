@@ -16,6 +16,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+
 
 public class LoginSuccessActivity extends AppCompatActivity {
 
@@ -52,10 +55,19 @@ public class LoginSuccessActivity extends AppCompatActivity {
         findViewById(R.id.find_kick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginSuccessActivity.this, MypageActivity.class);
+                Intent intent = new Intent(LoginSuccessActivity.this, MapActivity.class);
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                new IntentIntegrator(LoginSuccessActivity.this).initiateScan();
+            }
+        });
+
 
         checkAndUpdateUserName(userTextView);
     }
@@ -86,5 +98,23 @@ public class LoginSuccessActivity extends AppCompatActivity {
         });
     }
 }
+    // QR 코드 스캔 결과 처리
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+        if (result != null) {
+            if (result.getContents() == null) {
+                // 스캔이 취소됨
+            } else {
+                // 스캔 결과가 있을 경우
+                String scannedData = result.getContents();
+                Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
+                intent.putExtra("scannedData", scannedData);
+                startActivity(intent);
+            }
+        }
+    }
 }
 
