@@ -11,6 +11,7 @@
 /build
 /captures
 /app/src/main/res/values/strings.xml
+/app/src/main/res/values/keys.xml
 .externalNativeBuild
 .cxx
 local.properties
