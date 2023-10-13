@@ -3,6 +3,7 @@ package com.example.safety_kick;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -83,7 +84,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
 
     private void checkAndUpdateUserName(final TextView userTextView) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user !=null) {
+        if (user != null) {
             String uid = user.getUid();
 
             databaseReference.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -99,13 +100,14 @@ public class LoginSuccessActivity extends AppCompatActivity {
                     }
                 }
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoginSuccessActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
-            }
-        });
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(LoginSuccessActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
-}
+
     // QR 코드 스캔 결과 처리
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -114,15 +116,47 @@ public class LoginSuccessActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                // 스캔이 취소됨
+                // Scanning canceled
             } else {
-                // 스캔 결과가 있을 경우
+                // Scanning successful
                 String scannedData = result.getContents();
-                Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
-                intent.putExtra("scannedData", scannedData);
-                startActivity(intent);
+                Log.d("QR_CODE", "Scanned Data: " + scannedData);
+                checkAndBorrowItem(scannedData);
             }
         }
     }
-}
 
+    private void checkAndBorrowItem(String scannedData) {
+        DatabaseReference qrCodeRef = databaseReference.child("qrcode").child(scannedData);
+        qrCodeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if (dataSnapshot.exists()) {
+                    // 데이터를 찾았을 경우
+                    String qrcode1 = dataSnapshot.child("qrcode1").getValue(String.class);
+
+                    if (qrcode1 != null) {
+                        //킥보드 빌릴 수 있는 경우
+                        Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
+                        intent.putExtra("qrcode1", qrcode1);
+                        startActivity(intent);
+
+                    } else {
+                        // 킥보드의 이름이 없는 경우 또는 다른 필요한 데이터가 없는 경우 처리
+                        Toast.makeText(LoginSuccessActivity.this, "킥보드 정보가 부족합니다.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // 데이터를 찾지 못한 경우
+                    Toast.makeText(LoginSuccessActivity.this, "해당 QR 코드에 대한 정보를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Toast.makeText(LoginSuccessActivity.this, "데이터베이스에서 데이터를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+}
