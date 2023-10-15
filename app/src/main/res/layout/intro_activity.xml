@@ -7,10 +7,9 @@
     android:gravity="center">
 
     <ImageView
-        android:layout_width="300dp"
+        android:layout_width="394dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/logo"
         android:layout_gravity="center"
-        />
+        android:src="@drawable/logo1" />
 
 </LinearLayout>

@@ -2,7 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
 
+    <uses-permission android:name="android.permission.CAMERA"/>
+
     <application
+        android:hardwareAccelerated="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -46,6 +49,12 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".LoginSuccessActivity" />
+        <activity android:name=".MypageActivity" />
+        <activity android:name=".MapActivity" />
+        <activity android:name=".ServiceActivity" />
+        <activity android:name=".ModifyUserInfoActivity" />
+
 
     </application>
 

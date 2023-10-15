@@ -31,7 +31,7 @@ public class JoinActivity extends AppCompatActivity {
         passwordEdit = findViewById(R.id.password_edit);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference();
+        databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
         findViewById(R.id.signUp_btn).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,9 +43,9 @@ public class JoinActivity extends AppCompatActivity {
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(JoinActivity.this, task -> {
                             if(task.isSuccessful()){
-                                User user = new User(name, email,password); // User class should be defined
+                                User user = new User(name, email, password);
                                 String uid = task.getResult().getUser().getUid();
-                                databaseReference.child("users").child(uid).child(name).setValue(user);
+                                databaseReference.child(uid).setValue(user);
 
                                 Toast.makeText(JoinActivity.this, "회원가입을 축하합니다!!", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
@@ -55,12 +55,6 @@ public class JoinActivity extends AppCompatActivity {
                             }
                         });
             }
-            public void writeNewUser(String uid, String name, String email, String password) {
-                User user = new User(name, email,password); // User class should be defined
-                databaseReference.child("users").child(uid).child(name).setValue(user);
-            }
         });
     }
-
-
 }
