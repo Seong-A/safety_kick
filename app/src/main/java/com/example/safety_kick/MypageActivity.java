@@ -88,7 +88,6 @@ public class MypageActivity extends AppCompatActivity {
     private void logoutUser() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MypageActivity.this, LoginActivity.class);
-        // Clear the back stack, so the user cannot go back to the MyPage after logging out
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         finish();

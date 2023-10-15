@@ -99,21 +99,17 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
             String newName = editTextName.getText().toString().trim();
             String newPassword = editTextNewPassword.getText().toString().trim();
 
-            // Update user information in the database
             if (!newName.isEmpty()) {
                 databaseReference.child("users").child(uid).child("name").setValue(newName);
             }
 
             if (!newPassword.isEmpty()) {
-                // You should use Firebase Authentication to update the password
                 user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            // Password updated successfully
                             Toast.makeText(ModifyUserInfoActivity.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
                         } else {
-                            // Failed to update password
                             Toast.makeText(ModifyUserInfoActivity.this, "Failed to update password", Toast.LENGTH_SHORT).show();
                         }
                     }
