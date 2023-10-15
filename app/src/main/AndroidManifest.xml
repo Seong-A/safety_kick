@@ -53,6 +53,7 @@
         <activity android:name=".MypageActivity" />
         <activity android:name=".MapActivity" />
         <activity android:name=".ServiceActivity" />
+        <activity android:name=".ModifyUserInfoActivity" />
 
 
     </application>

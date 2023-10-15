@@ -13,8 +13,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class MypageActivity extends AppCompatActivity {
@@ -40,12 +40,28 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.user_modify).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Start the ModifyUserInfoActivity
+                Intent intent = new Intent(MypageActivity.this, ModifyUserInfoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logoutUser();
+            }
+        });
+
         checkAndUpdateUserName(userTextView);
     }
 
     private void checkAndUpdateUserName(final TextView userTextView) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(user !=null) {
+        if (user != null) {
             String uid = user.getUid();
 
             databaseReference.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -67,5 +83,14 @@ public class MypageActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void logoutUser() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(MypageActivity.this, LoginActivity.class);
+        // Clear the back stack, so the user cannot go back to the MyPage after logging out
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
     }
 }

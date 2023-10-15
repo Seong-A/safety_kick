@@ -28,21 +28,23 @@
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
-        <TextView
-            android:id="@+id/user_welcome"
+        <EditText
+            android:id="@+id/user_name"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="80dp"
             android:layout_marginStart="30dp"
             android:layout_marginEnd="30dp"
             android:layout_marginTop="120dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:padding="20dp" />
+
 
         <TextView
-            android:id="@+id/user_modify"
+            android:id="@+id/user_email"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginStart="30dp"
@@ -50,13 +52,12 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
             android:gravity="center_vertical"
-            android:text="✍️ 회원정보수정"
             android:textColor="@color/pink"
             android:textSize="25dp"
             android:padding="20dp" />
 
-        <TextView
-            android:id="@+id/drive_list"
+        <EditText
+            android:id="@+id/new_password"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginStart="30dp"
@@ -64,40 +65,23 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
             android:gravity="center_vertical"
-            android:text="🛴 주행내역"
             android:textColor="@color/pink"
             android:textSize="25dp"
+            android:inputType="textPassword"
+            android:hint="새로운 비밀번호를 입력하세요"
             android:padding="20dp" />
 
-        <TextView
-            android:id="@+id/payment_method"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/edit_background2"
-            android:gravity="center_vertical"
-            android:text="💳 결제수단"
-            android:textColor="@color/pink"
-            android:textSize="25dp"
-            android:padding="20dp" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="정보 수정"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:background="@drawable/btn_background" />
 
-        <TextView
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            android:layout_marginStart="30dp"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/edit_background2"
-            android:gravity="center_vertical"
-            android:text="👋 로그아웃"
-            android:textColor="@color/pink"
-            android:textSize="25dp"
-            android:padding="20dp" />
 
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
