@@ -28,6 +28,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
 
     private EditText editTextName;
     private TextView userEmailTextView;
+    private EditText editTextPhone;
     private EditText editTextNewPassword;
     private Button btnSaveChanges;
 
@@ -41,6 +42,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
 
         editTextName = findViewById(R.id.user_name);
         userEmailTextView = findViewById(R.id.user_email);
+        editTextPhone = findViewById(R.id.user_phone);
         editTextNewPassword = findViewById(R.id.new_password);
         btnSaveChanges = findViewById(R.id.btnSaveChanges);
 
@@ -73,6 +75,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         String name = dataSnapshot.child("name").getValue(String.class);
                         String email = dataSnapshot.child("email").getValue(String.class);
+                        String phone = dataSnapshot.child("phone").getValue(String.class);
 
                         if (name != null) {
                             editTextName.setText(name);
@@ -81,6 +84,11 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
                         if (email != null) {
                             userEmailTextView.setText(email);
                         }
+
+                        if (phone != null) {
+                            editTextPhone.setText(phone);
+                        }
+
                     }
                 }
 
@@ -98,6 +106,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
             String uid = user.getUid();
             String newName = editTextName.getText().toString().trim();
             String newPassword = editTextNewPassword.getText().toString().trim();
+            String newPhone = editTextPhone.getText().toString().trim();
 
             if (!newName.isEmpty()) {
                 databaseReference.child("users").child(uid).child("name").setValue(newName);

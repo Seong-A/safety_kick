@@ -57,6 +57,19 @@
             android:padding="20dp" />
 
         <EditText
+            android:id="@+id/user_phone"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/edit_background2"
+            android:gravity="center_vertical"
+            android:textColor="@color/pink"
+            android:textSize="25dp"
+            android:padding="20dp" />
+
+        <EditText
             android:id="@+id/new_password"
             android:layout_width="match_parent"
             android:layout_height="80dp"

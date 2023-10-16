@@ -17,6 +17,7 @@ public class JoinActivity extends AppCompatActivity {
     private EditText nameEdit;
     private EditText emailEdit;
     private EditText passwordEdit;
+    private EditText phoneEdit;
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
@@ -29,6 +30,7 @@ public class JoinActivity extends AppCompatActivity {
         nameEdit = findViewById(R.id.name_edit);
         emailEdit = findViewById(R.id.email_edit);
         passwordEdit = findViewById(R.id.password_edit);
+        phoneEdit = findViewById(R.id.phone_edit);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
@@ -39,11 +41,12 @@ public class JoinActivity extends AppCompatActivity {
                 String name = nameEdit.getText().toString().trim();
                 String email = emailEdit.getText().toString().trim();
                 String password = passwordEdit.getText().toString().trim();
+                String phone = phoneEdit.getText().toString().trim();
 
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(JoinActivity.this, task -> {
                             if(task.isSuccessful()){
-                                User user = new User(name, email, password);
+                                User user = new User(name, email, password, phone);
                                 String uid = task.getResult().getUser().getUid();
                                 databaseReference.child(uid).setValue(user);
 

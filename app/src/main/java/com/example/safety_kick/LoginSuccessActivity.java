@@ -116,9 +116,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
-                // Scanning canceled
             } else {
-                // Scanning successful
                 String scannedData = result.getContents();
                 Log.d("QR_CODE", "Scanned Data: " + scannedData);
                 checkAndBorrowItem(scannedData);
