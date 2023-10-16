@@ -54,6 +54,8 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
             }
         });
 
+        // ... (이전 코드 부분 생략)
+
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,28 +75,32 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                     if (dataSnapshot.exists()) {
-                        String name = dataSnapshot.child("name").getValue(String.class);
-                        String email = dataSnapshot.child("email").getValue(String.class);
-                        String phone = dataSnapshot.child("phone").getValue(String.class);
+                        try {
+                            String name = dataSnapshot.child("name").getValue(String.class);
+                            String email = dataSnapshot.child("email").getValue(String.class);
+                            String phone = dataSnapshot.child("phone").getValue(String.class);
 
-                        if (name != null) {
-                            editTextName.setText(name);
+                            if (name != null) {
+                                editTextName.setText(name);
+                            }
+
+                            if (email != null) {
+                                userEmailTextView.setText(email);
+                            }
+
+                            if (phone != null) {
+                                editTextPhone.setText(phone);
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            Toast.makeText(ModifyUserInfoActivity.this, "데이터를 읽는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
                         }
-
-                        if (email != null) {
-                            userEmailTextView.setText(email);
-                        }
-
-                        if (phone != null) {
-                            editTextPhone.setText(phone);
-                        }
-
                     }
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(ModifyUserInfoActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ModifyUserInfoActivity.this, "사용자 데이터를 가져오는 데 실패했습니다.", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -108,25 +114,35 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
             String newPassword = editTextNewPassword.getText().toString().trim();
             String newPhone = editTextPhone.getText().toString().trim();
 
-            if (!newName.isEmpty()) {
-                databaseReference.child("users").child(uid).child("name").setValue(newName);
-            }
+            try {
+                if (!newName.isEmpty()) {
+                    databaseReference.child("users").child(uid).child("name").setValue(newName);
+                }
 
-            if (!newPassword.isEmpty()) {
-                user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(ModifyUserInfoActivity.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
-                        } else {
-                            Toast.makeText(ModifyUserInfoActivity.this, "Failed to update password", Toast.LENGTH_SHORT).show();
+                if (!newPassword.isEmpty()) {
+                    user.updatePassword(newPassword).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(ModifyUserInfoActivity.this, "비밀번호가 성공적으로 업데이트되었습니다.", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(ModifyUserInfoActivity.this, "비밀번호 업데이트 실패", Toast.LENGTH_SHORT).show();
+                            }
                         }
-                    }
-                });
-            }
+                    });
+                }
 
-            Toast.makeText(ModifyUserInfoActivity.this, "Changes saved successfully", Toast.LENGTH_SHORT).show();
+                if (!newPhone.isEmpty()) {
+                    databaseReference.child("users").child(uid).child("phone").setValue(newPhone);
+                }
+
+                Toast.makeText(ModifyUserInfoActivity.this, "변경 사항이 성공적으로 저장되었습니다.", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(ModifyUserInfoActivity.this, "변경 사항을 저장하는 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
+
 
