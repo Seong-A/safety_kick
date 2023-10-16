@@ -54,6 +54,7 @@
         <activity android:name=".MapActivity" />
         <activity android:name=".ServiceActivity" />
         <activity android:name=".ModifyUserInfoActivity" />
+        <activity android:name=".RentActivity" />
 
 
     </application>

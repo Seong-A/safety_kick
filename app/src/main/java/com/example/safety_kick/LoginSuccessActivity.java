@@ -20,6 +20,8 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
+import java.util.HashMap;
+
 
 public class LoginSuccessActivity extends AppCompatActivity {
 
@@ -116,36 +118,36 @@ public class LoginSuccessActivity extends AppCompatActivity {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
             if (result.getContents() == null) {
+                // 스캔 결과가 없는 경우
             } else {
-                String scannedData = result.getContents();
-                Log.d("QR_CODE", "Scanned Data: " + scannedData);
-                checkAndBorrowItem(scannedData);
+                // 스캔 결과가 있는 경우
+                checkAndBorrowItem(result.getContents());
             }
         }
     }
 
     private void checkAndBorrowItem(String scannedData) {
-        DatabaseReference qrCodeRef = databaseReference.child("qrcode").child(scannedData);
-        qrCodeRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference qrcodeRef = databaseReference.child("qrcode");
+        qrcodeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    // 데이터를 찾았을 경우
-                    String qrcode1 = dataSnapshot.child("qrcode1").getValue(String.class);
+                    for (DataSnapshot qrcodeSnapshot : dataSnapshot.getChildren()) {
+                        String qrcodeValue = qrcodeSnapshot.getValue(String.class);
 
-                    if (qrcode1 != null) {
-                        //킥보드 빌릴 수 있는 경우
-                        Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
-                        intent.putExtra("qrcode1", qrcode1);
-                        startActivity(intent);
-
-                    } else {
-                        // 킥보드의 이름이 없는 경우 또는 다른 필요한 데이터가 없는 경우 처리
-                        Toast.makeText(LoginSuccessActivity.this, "킥보드 정보가 부족합니다.", Toast.LENGTH_SHORT).show();
+                        if (qrcodeValue != null && qrcodeValue.equals(scannedData)) {
+                            // 일치하는 경우 처리
+                            Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
+                            intent.putExtra("qrcode", scannedData);
+                            startActivity(intent);
+                            return; // 매칭된 경우에는 반복을 종료합니다.
+                        }
                     }
+                    // 매칭되는 QR 코드를 찾지 못한 경우
+                    Toast.makeText(LoginSuccessActivity.this, "일치하는 QR 코드를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    // 데이터를 찾지 못한 경우
-                    Toast.makeText(LoginSuccessActivity.this, "해당 QR 코드에 대한 정보를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
+                    // "qrcode" 노드가 비어 있는 경우
+                    Toast.makeText(LoginSuccessActivity.this, "QR 코드 데이터가 비어 있습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -155,6 +157,4 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
