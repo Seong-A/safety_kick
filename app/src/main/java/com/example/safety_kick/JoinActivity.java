@@ -22,6 +22,7 @@ public class JoinActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +44,15 @@ public class JoinActivity extends AppCompatActivity {
                 String password = passwordEdit.getText().toString().trim();
                 String phone = phoneEdit.getText().toString().trim();
 
+                // 전화번호 형식 검증
+                if (!isValidPhoneNumber(phone)) {
+                    Toast.makeText(JoinActivity.this, "올바른 전화번호 형식이 아닙니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 firebaseAuth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(JoinActivity.this, task -> {
-                            if(task.isSuccessful()){
+                            if (task.isSuccessful()) {
                                 User user = new User(name, email, password, phone);
                                 String uid = task.getResult().getUser().getUid();
                                 databaseReference.child(uid).setValue(user);
@@ -59,5 +66,9 @@ public class JoinActivity extends AppCompatActivity {
                         });
             }
         });
+    }
+
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        return phoneNumber.matches("\\d{3}-\\d{4}-\\d{4}");
     }
 }
