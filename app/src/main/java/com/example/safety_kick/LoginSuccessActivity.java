@@ -1,5 +1,7 @@
 package com.example.safety_kick;
 
+import android.Manifest;
+import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,6 +29,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
+    private BluetoothAdapter bluetoothAdapter;
 
 
     @Override
@@ -36,6 +39,21 @@ public class LoginSuccessActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        if (bluetoothAdapter == null) {
+            // 장치가 Bluetooth를 지원하지 않는 경우 처리
+            Toast.makeText(this, "장치가 Bluetooth를 지원하지 않습니다.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Bluetooth 활성화 확인
+        if (!bluetoothAdapter.isEnabled()) {
+            // Bluetooth 비활성화 상태이므로 사용자에게 활성화 요청
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
+        }
 
         TextView userTextView = findViewById(R.id.user_name);
 
@@ -78,6 +96,12 @@ public class LoginSuccessActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // 위치권한
+        String[] permission_list = {
+                android.Manifest.permission.ACCESS_FINE_LOCATION,
+                Manifest.permission.ACCESS_COARSE_LOCATION
+        };
 
 
         checkAndUpdateUserName(userTextView);
@@ -127,34 +151,39 @@ public class LoginSuccessActivity extends AppCompatActivity {
     }
 
     private void checkAndBorrowItem(String scannedData) {
-        DatabaseReference qrcodeRef = databaseReference.child("qrcode");
+        DatabaseReference qrcodeRef = databaseReference.child("qrcode").child("qrcode1");
+
         qrcodeRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    for (DataSnapshot qrcodeSnapshot : dataSnapshot.getChildren()) {
-                        String qrcodeValue = qrcodeSnapshot.getValue(String.class);
+                    String id = dataSnapshot.child("id").getValue(String.class);
+                    String startLatitude = dataSnapshot.child("start_latitude").getValue(String.class);
+                    String startLongitude = dataSnapshot.child("start_longitude").getValue(String.class);
 
-                        if (qrcodeValue != null && qrcodeValue.equals(scannedData)) {
-                            // 일치하는 경우 처리
-                            Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
-                            intent.putExtra("qrcode", scannedData);
-                            startActivity(intent);
-                            return; // 매칭된 경우에는 반복을 종료합니다.
-                        }
+                    if (id != null && id.equals(scannedData)) {
+                        // Matching QR code found
+                        // Navigate to a specific activity for this ID
+                        Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
+                        // Pass the latitude and longitude to the next activity if needed
+                        intent.putExtra("latitude", startLatitude);
+                        intent.putExtra("longitude", startLongitude);
+                        startActivity(intent);
+                    } else {
+                        // No matching QR code found
+                        Toast.makeText(LoginSuccessActivity.this, "No matching QR code found.", Toast.LENGTH_SHORT).show();
                     }
-                    // 매칭되는 QR 코드를 찾지 못한 경우
-                    Toast.makeText(LoginSuccessActivity.this, "일치하는 QR 코드를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
                 } else {
-                    // "qrcode" 노드가 비어 있는 경우
-                    Toast.makeText(LoginSuccessActivity.this, "QR 코드 데이터가 비어 있습니다.", Toast.LENGTH_SHORT).show();
+                    // "qrcode1" does not exist
+                    Toast.makeText(LoginSuccessActivity.this, "QR code data not found.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoginSuccessActivity.this, "데이터베이스에서 데이터를 가져오지 못했습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginSuccessActivity.this, "Failed to retrieve data from the database.", Toast.LENGTH_SHORT).show();
             }
         });
     }
+
 }

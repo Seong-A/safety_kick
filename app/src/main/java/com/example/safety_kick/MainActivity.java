@@ -41,23 +41,6 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-
-                // 읽기
-                /*databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        // This method is called once with the initial value and again
-                        // whenever data at this location is updated.
-                        String value = dataSnapshot.getValue(String.class);
-                        readText.setText("value: " + value);
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError error) {
-                        // Failed to read value
-                        readText.setText("error: " + error.toException());
-                    }
-                }); */
             }
         });
     }
