@@ -5,7 +5,6 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +21,11 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
-import java.util.HashMap;
-
 
 public class LoginSuccessActivity extends AppCompatActivity {
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
-    private BluetoothAdapter bluetoothAdapter;
 
 
     @Override
@@ -39,21 +35,6 @@ public class LoginSuccessActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
-
-        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        if (bluetoothAdapter == null) {
-            // 장치가 Bluetooth를 지원하지 않는 경우 처리
-            Toast.makeText(this, "장치가 Bluetooth를 지원하지 않습니다.", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Bluetooth 활성화 확인
-        if (!bluetoothAdapter.isEnabled()) {
-            // Bluetooth 비활성화 상태이므로 사용자에게 활성화 요청
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, 1);
-        }
 
         TextView userTextView = findViewById(R.id.user_name);
 
@@ -96,12 +77,6 @@ public class LoginSuccessActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // 위치권한
-        String[] permission_list = {
-                android.Manifest.permission.ACCESS_FINE_LOCATION,
-                Manifest.permission.ACCESS_COARSE_LOCATION
-        };
 
 
         checkAndUpdateUserName(userTextView);
@@ -162,19 +137,14 @@ public class LoginSuccessActivity extends AppCompatActivity {
                     String startLongitude = dataSnapshot.child("start_longitude").getValue(String.class);
 
                     if (id != null && id.equals(scannedData)) {
-                        // Matching QR code found
-                        // Navigate to a specific activity for this ID
-                        Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
-                        // Pass the latitude and longitude to the next activity if needed
+                        Intent intent = new Intent(LoginSuccessActivity.this, AlcoholActivity.class);
                         intent.putExtra("latitude", startLatitude);
                         intent.putExtra("longitude", startLongitude);
                         startActivity(intent);
                     } else {
-                        // No matching QR code found
                         Toast.makeText(LoginSuccessActivity.this, "No matching QR code found.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // "qrcode1" does not exist
                     Toast.makeText(LoginSuccessActivity.this, "QR code data not found.", Toast.LENGTH_SHORT).show();
                 }
             }
