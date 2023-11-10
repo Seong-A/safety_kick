@@ -63,6 +63,8 @@
         <activity android:name=".AlcoholActivity" android:exported="true"  />
         <activity android:name=".HelmetActivity" android:exported="true" />
         <activity android:name=".MultipleActivity" android:exported="true" />
+        <activity android:name=".ReturnActivity" android:exported="true" />
+        <activity android:name=".PaymentActivity" android:exported="true" />
 
 
 

@@ -36,77 +36,56 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintVertical_bias="0.0">
 
         <TextView
+            android:id="@+id/user_name"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="100dp"
             android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginTop="120dp"
-            android:layout_marginEnd="30dp"
-            android:text="안전 수칙 인증 성공"
-            android:textAlignment="center"
+            android:background="@drawable/edit_background2"
+            android:gravity="center"
             android:textColor="@color/pink"
-            android:textSize="40dp"
-            android:textStyle="bold" />
+            android:textSize="25dp" />
 
         <TextView
+            android:id="@+id/time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
-            android:text="안전하고 즐거운 주행되세요"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textColor="@color/pink"
+            android:textSize="25dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginTop="40dp"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="✔  음주 측정️"
+            android:id="@+id/money"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:textAlignment="center"
             android:textColor="@color/pink"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginStart="120dp"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="✔  안전모 착용️"
-            android:textColor="@color/pink"
-            android:textSize="25dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="80dp"
-            android:layout_marginStart="120dp"
-            android:gravity="center"
-            android:padding="20dp"
-            android:text="✔  1인 탑승️"
-            android:textColor="@color/pink"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textSize="25dp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/rent_btn"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
+            android:id="@+id/return_btn"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/btn_background"
-            android:text="대여하기"
-            android:textColor="@android:color/white"
+            android:layout_marginTop="250dp"
+            android:layout_marginBottom="60dp"
+            android:layout_weight="1"
+            android:background="@drawable/btn_background2"
+            android:text="결제하기"
+            android:textColor="@color/white"
             android:textSize="25dp"
             android:textStyle="bold" />
+
     </LinearLayout>
 
 

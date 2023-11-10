@@ -61,13 +61,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(HomeActivity.this, ServiceActivity.class);
-                startActivity(intent);
+
             }
         });
-
-
     }
-
 }
 
 
