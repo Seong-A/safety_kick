@@ -45,10 +45,8 @@ public class PaymentActivity extends AppCompatActivity {
         // RentActivity에서 전달한 경과 시간을 받아옴
         Intent intent = getIntent();
         long elapsedTimeMillis = intent.getLongExtra("ELAPSED_TIME", 0);
-
         // 경과 시간을 형식화하여 문자열로 변환
         String formattedElapsedTime = formatElapsedTime(elapsedTimeMillis);
-
         // 텍스트뷰에 경과 시간 표시
         elapsedTimeTextView.setText("경과 시간: " + formattedElapsedTime);
         // 계산된 돈을 텍스트뷰에 표시
@@ -95,7 +93,6 @@ public class PaymentActivity extends AppCompatActivity {
     private double calculateMoney(long elapsedTime) {
         // elapsedTime을 분 단위로 변환
         double elapsedMinutes = elapsedTime / (1000 * 60);
-
         // 요금 계산 (예: 1분에 100원)
         return elapsedMinutes * 100;
     }

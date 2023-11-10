@@ -14,6 +14,11 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
+
 public class ReturnActivity extends AppCompatActivity {
     private TextView messageTextView;
     private DatabaseReference rentsRef;
@@ -47,13 +52,11 @@ public class ReturnActivity extends AppCompatActivity {
                     // rent_id 자동 생성
                     String rentId = rentsRef.push().getKey();
 
-                    // 현재 시간을 가져옴
+                    // 현재 시간 및 날짜 가져오기
                     long endTimeMillis = SystemClock.elapsedRealtime();
-                    // RentActivity에서 전달한 시작 시간을 가져옴
                     long startTimeMillis = getIntent().getLongExtra("START_TIME", 0);
-
-                    // 경과 시간을 계산 (밀리초 단위)
                     long elapsedTimeMillis = endTimeMillis - startTimeMillis;
+
                     // 경과 시간을 계산 (분 단위)
                     int elapsedMinutes = (int) (elapsedTimeMillis / 60000); // 1분은 60,000밀리초
                     // 남은 초를 계산
@@ -61,16 +64,16 @@ public class ReturnActivity extends AppCompatActivity {
 
                     // 문자열로 변환
                     String elapsedTimeString = String.format("%d:%.2f", elapsedMinutes, remainingSeconds);
-                    String[] timeComponents = elapsedTimeString.split(":");
-                    int minutes = Integer.parseInt(timeComponents[0]);
-                    // 1분에 100원 요금 계산
-                    double feeValue = minutes * 100;
 
                     // 현재 로그인된 사용자의 이메일을 가져와서 Firebase에 저장
                     String userEmail = user.getEmail();
                     rentsRef.child(rentId).child("email").setValue(userEmail);
                     rentsRef.child(rentId).child("time").setValue(elapsedTimeString);
-                    rentsRef.child(rentId).child("fee").setValue(String.valueOf(feeValue));
+                    rentsRef.child(rentId).child("fee").setValue(String.valueOf(elapsedMinutes * 100));
+
+                    // 현재 날짜를 Firebase에 저장
+                    String currentDate = getCurrentDate();
+                    rentsRef.child(rentId).child("date").setValue(currentDate);
 
                     // PaymentActivity로 전환
                     Intent paymentIntent = new Intent(ReturnActivity.this, PaymentActivity.class);
@@ -79,11 +82,16 @@ public class ReturnActivity extends AppCompatActivity {
 
                     finish(); // 현재 액티비티 종료
                 } else {
-                    // 사용자가 로그인되어 있지 않다면 어떻게 처리할지 여기에 추가 로직을 구현할 수 있어요.
+                    // 사용자가 로그인되어 있지 않을 때 처리
                 }
             }
         });
+    }
 
+    // 현재 날짜를 문자열로 반환하는 메서드
+    private String getCurrentDate() {
+        Date currentDate = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+        return dateFormat.format(currentDate);
     }
 }
-

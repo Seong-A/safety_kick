@@ -49,6 +49,23 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.rent_list).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MypageActivity.this, RentListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.payment_method).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MypageActivity.this, PaymentListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

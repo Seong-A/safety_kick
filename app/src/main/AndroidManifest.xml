@@ -65,6 +65,8 @@
         <activity android:name=".MultipleActivity" android:exported="true" />
         <activity android:name=".ReturnActivity" android:exported="true" />
         <activity android:name=".PaymentActivity" android:exported="true" />
+        <activity android:name=".RentListActivity" android:exported="true" />
+        <activity android:name=".PaymentListActivity" android:exported="true" />
 
 
 

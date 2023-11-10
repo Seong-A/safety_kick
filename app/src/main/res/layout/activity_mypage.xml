@@ -56,7 +56,7 @@
             android:padding="20dp" />
 
         <TextView
-            android:id="@+id/drive_list"
+            android:id="@+id/rent_list"
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginStart="30dp"
