@@ -109,23 +109,23 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String id = dataSnapshot.child("id").getValue(String.class);
-                    String startLatitude = dataSnapshot.child("latitude").getValue(String.class);
-                    String startLongitude = dataSnapshot.child("longitude").getValue(String.class);
+                    String latitude = dataSnapshot.child("latitude").getValue(String.class);
+                    String longitude = dataSnapshot.child("longitude").getValue(String.class);
 
                     if (id != null && id.equals(scannedData)) {
                         // Matching QR code found
                         // Navigate to AlcoholActivity
                         Intent intent = new Intent(MapActivity.this, AlcoholActivity.class);
                         // Pass the latitude and longitude to the next activity if needed
-                        intent.putExtra("latitude", startLatitude);
-                        intent.putExtra("longitude", startLongitude);
+                        intent.putExtra("latitude", latitude);
+                        intent.putExtra("longitude", longitude);
                         startActivity(intent);
                     } else {
                         // No matching QR code found
                         Toast.makeText(MapActivity.this, "No matching QR code found.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // "qrcode1" does not exist
+                    // QR code data not found
                     Toast.makeText(MapActivity.this, "QR code data not found.", Toast.LENGTH_SHORT).show();
                 }
             }

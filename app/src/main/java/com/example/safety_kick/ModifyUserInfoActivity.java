@@ -54,8 +54,6 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
             }
         });
 
-        // ... (이전 코드 부분 생략)
-
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
