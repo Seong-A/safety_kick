@@ -60,7 +60,7 @@ public class ReturnActivity extends AppCompatActivity {
                     // rent_id 자동 생성
                     String rid = rentsRef.push().getKey();
 
-                    qrcodeRef.child("id").addListenerForSingleValueEvent(new ValueEventListener() {
+                    qrcodeRef.child("qid").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                             if (dataSnapshot.exists()) {

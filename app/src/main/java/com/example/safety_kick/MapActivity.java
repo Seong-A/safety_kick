@@ -108,11 +108,11 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String id = dataSnapshot.child("id").getValue(String.class);
+                    String qid = dataSnapshot.child("qid").getValue(String.class);
                     String latitude = dataSnapshot.child("latitude").getValue(String.class);
                     String longitude = dataSnapshot.child("longitude").getValue(String.class);
 
-                    if (id != null && id.equals(scannedData)) {
+                    if (qid != null && qid.equals(scannedData)) {
                         // Matching QR code found
                         // Navigate to AlcoholActivity
                         Intent intent = new Intent(MapActivity.this, AlcoholActivity.class);
