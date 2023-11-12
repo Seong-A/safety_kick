@@ -109,8 +109,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
                     String id = dataSnapshot.child("id").getValue(String.class);
-                    String startLatitude = dataSnapshot.child("start_latitude").getValue(String.class);
-                    String startLongitude = dataSnapshot.child("start_longitude").getValue(String.class);
+                    String startLatitude = dataSnapshot.child("latitude").getValue(String.class);
+                    String startLongitude = dataSnapshot.child("longitude").getValue(String.class);
 
                     if (id != null && id.equals(scannedData)) {
                         // Matching QR code found

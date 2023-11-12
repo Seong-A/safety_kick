@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MypageActivity">
+    tools:context=".PaymentActivity">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -73,7 +73,7 @@
             android:textSize="25dp" />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/return_btn"
+            android:id="@+id/payment_btn"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center"

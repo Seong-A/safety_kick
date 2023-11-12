@@ -73,7 +73,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
         findViewById(R.id.service_center).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginSuccessActivity.this, ServiceActivity.class);
+                Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
                 startActivity(intent);
             }
         });
