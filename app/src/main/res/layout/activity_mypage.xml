@@ -78,7 +78,7 @@
             android:layout_marginBottom="20dp"
             android:background="@drawable/edit_background2"
             android:gravity="center_vertical"
-            android:text="💳 결제수단"
+            android:text="📑 이용안내"
             android:textColor="@color/pink"
             android:textSize="25dp"
             android:padding="20dp" />

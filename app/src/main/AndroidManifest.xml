@@ -70,9 +70,6 @@
         <activity android:name=".PaymentListActivity" android:exported="true" />
 
 
-
-
-
     </application>
 
 </manifest>

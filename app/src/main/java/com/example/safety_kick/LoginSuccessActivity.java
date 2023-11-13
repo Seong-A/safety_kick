@@ -73,7 +73,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
         findViewById(R.id.service_center).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginSuccessActivity.this, RentActivity.class);
+                Intent intent = new Intent(LoginSuccessActivity.this, ServiceActivity.class);
                 startActivity(intent);
             }
         });
@@ -132,14 +132,14 @@ public class LoginSuccessActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String id = dataSnapshot.child("id").getValue(String.class);
-                    String startLatitude = dataSnapshot.child("start_latitude").getValue(String.class);
-                    String startLongitude = dataSnapshot.child("start_longitude").getValue(String.class);
+                    String qid = dataSnapshot.child("qid").getValue(String.class);
+                    String Latitude = dataSnapshot.child("latitude").getValue(String.class);
+                    String Longitude = dataSnapshot.child("longitude").getValue(String.class);
 
-                    if (id != null && id.equals(scannedData)) {
+                    if (qid != null && qid.equals(scannedData)) {
                         Intent intent = new Intent(LoginSuccessActivity.this, AlcoholActivity.class);
-                        intent.putExtra("latitude", startLatitude);
-                        intent.putExtra("longitude", startLongitude);
+                        intent.putExtra("latitude", Latitude);
+                        intent.putExtra("longitude", Longitude);
                         startActivity(intent);
                     } else {
                         Toast.makeText(LoginSuccessActivity.this, "No matching QR code found.", Toast.LENGTH_SHORT).show();

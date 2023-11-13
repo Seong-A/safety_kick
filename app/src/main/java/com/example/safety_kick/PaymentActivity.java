@@ -7,7 +7,10 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class PaymentActivity extends AppCompatActivity implements LocationListener {
 
     private static final int REQUEST_LOCATION_PERMISSION = 1;
@@ -32,6 +39,7 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
     private DatabaseReference databaseReference;
     private LocationManager locationManager;
     private LocationListener locationListener;
+    private String selectedCardName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,17 +94,6 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         };
 
 
-        findViewById(R.id.payment_btn).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestLocationUpdate();
-                Intent intent = new Intent(PaymentActivity.this, LoginSuccessActivity.class);
-                startActivity(intent);
-            }
-        });
-
-
-
         // RentActivity에서 전달한 경과 시간을 받아옴
         Intent intent = getIntent();
         long elapsedTimeMillis = intent.getLongExtra("ELAPSED_TIME", 0);
@@ -109,6 +106,26 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         moneyTextView.setText("요금: " + money + "원");
 
         checkAndUpdateUserName(userTextView);
+
+        findViewById(R.id.payment_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                requestLocationUpdate();
+                double money = calculateMoney(elapsedTimeMillis);
+                String currentDateAndTime = getCurrentDateAndTime();
+
+                Intent intent = new Intent(PaymentActivity.this, PaymentListActivity.class);
+                intent.putExtra("PAYMENT_AMOUNT", money);
+                intent.putExtra("PAYMENT_DATE", currentDateAndTime);
+                intent.putExtra("CARD_NAME", selectedCardName);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private String getCurrentDateAndTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
     }
 
     private void checkAndUpdateUserName(final TextView userTextView) {
@@ -162,12 +179,13 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         locationManager.removeUpdates(this);
     }
 
-
     private void requestLocationUpdate() {
-        // 위치 업데이트를 요청합니다.
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        if (locationManager != null) {
+            // 위치 업데이트를 요청합니다.
+            locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, this);
+        } else {
+        }
     }
-
 
     // 경과 시간을 형식화하여 문자열로 반환
     private String formatElapsedTime(long elapsedTime) {
@@ -183,4 +201,28 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         // 요금 계산 (예: 1분에 100원)
         return elapsedMinutes * 100;
     }
+
+    public void showCardMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this, view);
+        popupMenu.getMenuInflater().inflate(R.menu.context_menu, popupMenu.getMenu());
+
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                // 메뉴 아이템 클릭 시 처리할 로직 추가
+                Toast.makeText(PaymentActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
+                setCardName(item.getTitle().toString());
+                selectedCardName = item.getTitle().toString();
+                return true;
+            }
+        });
+
+        popupMenu.show();
+    }
+
+    private void setCardName(String cardName) {
+        EditText cardNameEditText = findViewById(R.id.CardName);
+        cardNameEditText.setText(cardName);
+    }
+
 }
