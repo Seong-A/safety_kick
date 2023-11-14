@@ -5,12 +5,14 @@ import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -35,6 +37,14 @@ public class LoginSuccessActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        findViewById(R.id.run_info).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginSuccessActivity.this, RunInfoActivity.class);
+                startActivity(intent);
+            }
+        });
 
         TextView userTextView = findViewById(R.id.user_name);
 
@@ -62,6 +72,11 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        ImageView findKick = findViewById(R.id.find_kick);
+        String gifUrl = "https://cdn.dribbble.com/users/3632750/screenshots/6798569/isometric_smartphone_gps.gif";
+
+        Glide.with(this).asGif().load(gifUrl).into(findKick);
+
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,6 +84,12 @@ public class LoginSuccessActivity extends AppCompatActivity {
                 new IntentIntegrator(LoginSuccessActivity.this).initiateScan();
             }
         });
+
+        ImageView qr = findViewById(R.id.qr);
+        String qrUrl = "https://storage.googleapis.com/support-kms-prod/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm";
+
+        Glide.with(this).asGif().load(qrUrl).into(qr);
+
 
         findViewById(R.id.service_center).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +115,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         String name = dataSnapshot.child("name").getValue(String.class);
                         if (name != null) {
-                            String welcomeMessage = name + "님, 환영방구뿡뿡이~";
+                            String welcomeMessage = name + "님, 환영합니다~";
                             userTextView.setText(name);
                             userTextView.setText(welcomeMessage);
                         }

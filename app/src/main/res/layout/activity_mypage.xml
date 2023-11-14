@@ -39,7 +39,8 @@
             android:background="@drawable/edit_background3"
             android:gravity="center"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/user_modify"

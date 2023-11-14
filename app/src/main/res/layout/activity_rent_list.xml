@@ -46,7 +46,6 @@
             android:padding="10dp"
             android:background="@drawable/btn_background3"
             android:gravity="center"
-            android:textColor="@color/pink"
             android:textSize="25dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"

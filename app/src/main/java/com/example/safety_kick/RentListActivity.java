@@ -1,6 +1,7 @@
 package com.example.safety_kick;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
@@ -86,24 +87,28 @@ public class RentListActivity extends AppCompatActivity {
                 LinearLayout.LayoutParams.WRAP_CONTENT
         ));
         newRentLayout.setOrientation(LinearLayout.VERTICAL);
-        newRentLayout.setBackgroundResource(R.drawable.edit_background2);
+        newRentLayout.setBackgroundResource(R.drawable.edit_background4);
         newRentLayout.setGravity(Gravity.CENTER);
 
         // 날짜, 시간 및 요금에 대한 TextView 생성
         TextView dateTextView = new TextView(this);
-        dateTextView.setText("이용날짜: " + date);
-        dateTextView.setTextSize(20);
-        dateTextView.setTextColor(ContextCompat.getColor(this, R.color.pink));
+        dateTextView.setText("이용날짜 : " + date);
+        dateTextView.setTextSize(18);
+        dateTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
+        dateTextView.setTypeface(null, Typeface.BOLD);
+        dateTextView.setPadding(50, 20, 10, 20); // Adjust padding as needed
 
         TextView timeTextView = new TextView(this);
-        timeTextView.setText("이용시간: " + time);
+        timeTextView.setText("이용시간 : " + time);
         timeTextView.setTextSize(15);
-        timeTextView.setTextColor(ContextCompat.getColor(this, R.color.pink));
+        timeTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
+        timeTextView.setPadding(50, 20, 10, 20); // Adjust padding as needed
 
         TextView feeTextView = new TextView(this);
-        feeTextView.setText("이용요금: " + fee);
+        feeTextView.setText("이용요금 : " + fee);
         feeTextView.setTextSize(15);
-        feeTextView.setTextColor(ContextCompat.getColor(this, R.color.pink));
+        feeTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
+        feeTextView.setPadding(50, 20, 10, 20); // Adjust padding as needed
 
         newRentLayout.addView(dateTextView);
         newRentLayout.addView(timeTextView);
@@ -114,9 +119,10 @@ public class RentListActivity extends AppCompatActivity {
 
         // 대여 기록 간의 여백 추가
         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) newRentLayout.getLayoutParams();
-        layoutParams.setMargins(30, 20, 30, 20);
+        layoutParams.setMargins(30, 30, 30, 20);
         newRentLayout.setLayoutParams(layoutParams);
     }
+
 
     private void setRentListLayoutHeight(int rentCount) {
         // 최소한의 높이 설정

@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
 
@@ -34,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private static final int RC_SIGN_IN = 9001;
     private GoogleSignInClient mGoogleSignInClient;
-    private Button google_btn;
+    private TextView google_btn;
     private GoogleSignInAccount gsa;
     private DatabaseReference databaseReference;
 
@@ -48,6 +50,33 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        emailEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    emailEdit.setBackgroundResource(R.drawable.edit_background);
+                } else {
+                    emailEdit.setBackgroundResource(R.drawable.btn_background3);
+                }
+            }
+        });
+
+        passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // Change the input type when the passwordEdit gains focus
+                    passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                    passwordEdit.setBackgroundResource(R.drawable.edit_background);
+                } else {
+                    // Change it back to the password input type when it loses focus
+                    passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordEdit.setBackgroundResource(R.drawable.btn_background3);
+                }
+            }
+        });
 
         // 일반 로그인
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
@@ -96,6 +125,7 @@ public class LoginActivity extends AppCompatActivity {
                 signIn();
             }
         });
+
     }
 
     private void signIn() {

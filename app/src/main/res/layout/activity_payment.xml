@@ -43,10 +43,11 @@
             android:layout_marginStart="30dp"
             android:layout_marginTop="120dp"
             android:layout_marginEnd="30dp"
-            android:background="@drawable/edit_background2"
+            android:background="@drawable/edit_background3"
             android:gravity="center"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/time"
@@ -57,7 +58,7 @@
             android:layout_marginEnd="30dp"
             android:textAlignment="center"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="20dp" />
 
         <TextView
             android:id="@+id/money"
@@ -65,10 +66,20 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="30dp"
             android:textAlignment="center"
             android:textColor="@color/pink"
-            android:textSize="25dp" />
+            android:textSize="20dp" />
+
+        <View
+            android:layout_width="340dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|top"
+            android:background="@android:color/darker_gray" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
@@ -131,7 +142,7 @@
             android:layout_width="200dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="70dp"
             android:layout_marginBottom="60dp"
             android:layout_weight="1"
             android:background="@drawable/btn_background2"

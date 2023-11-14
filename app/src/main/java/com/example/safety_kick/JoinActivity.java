@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -36,6 +37,59 @@ public class JoinActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+        nameEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    nameEdit.setBackgroundResource(R.drawable.edit_background);
+                } else {
+                    nameEdit.setBackgroundResource(R.drawable.btn_background3);
+                }
+            }
+        });
+
+        emailEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    emailEdit.setBackgroundResource(R.drawable.edit_background);
+                } else {
+                    emailEdit.setBackgroundResource(R.drawable.btn_background3);
+                }
+            }
+        });
+
+        passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+
+        passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    // Change the input type when the passwordEdit gains focus
+                    passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_NORMAL);
+                    passwordEdit.setBackgroundResource(R.drawable.edit_background);
+                } else {
+                    // Change it back to the password input type when it loses focus
+                    passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    passwordEdit.setBackgroundResource(R.drawable.btn_background3);
+                }
+            }
+        });
+
+
+        phoneEdit.setInputType(InputType.TYPE_CLASS_PHONE);
+
+        phoneEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    phoneEdit.setBackgroundResource(R.drawable.edit_background);
+                } else {
+                    phoneEdit.setBackgroundResource(R.drawable.btn_background3);
+                }
+            }
+        });
+
         findViewById(R.id.signUp_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +97,12 @@ public class JoinActivity extends AppCompatActivity {
                 String email = emailEdit.getText().toString().trim();
                 String password = passwordEdit.getText().toString().trim();
                 String phone = phoneEdit.getText().toString().trim();
+
+                // 비밀번호 형식 검증
+                if (!isValidPassword(password)) {
+                    Toast.makeText(JoinActivity.this, "비밀번호는 영문과 숫자의 조합으로 8자 이상이어야 합니다.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 // 전화번호 형식 검증
                 if (!isValidPhoneNumber(phone)) {
@@ -67,8 +127,13 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
     }
+    private boolean isValidPassword(String password) {
+        // 비밀번호는 영문과 숫자의 조합으로 8자 이상이어야 함
+        return password.matches("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$");
+    }
 
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{3}-\\d{4}-\\d{4}");
     }
+
 }
