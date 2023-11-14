@@ -119,8 +119,10 @@ public class RentListActivity extends AppCompatActivity {
     }
 
     private void setRentListLayoutHeight(int rentCount) {
-        // 계산된 높이 설정
-        int calculatedHeight = 400 + (rentCount - 1) * 150;
-        rentListLayout.getLayoutParams().height = calculatedHeight;
+        // 최소한의 높이 설정
+        int minHeight = 400;
+        int calculatedHeight = minHeight + (rentCount - 1) * 150;
+        rentListLayout.setMinimumHeight(calculatedHeight);
     }
+
 }

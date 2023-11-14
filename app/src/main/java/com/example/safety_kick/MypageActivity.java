@@ -57,10 +57,10 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
-        findViewById(R.id.payment_method).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.run_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MypageActivity.this, PaymentListActivity.class);
+                Intent intent = new Intent(MypageActivity.this, RunInfoActivity.class);
                 startActivity(intent);
             }
         });
