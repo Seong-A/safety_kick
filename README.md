@@ -42,6 +42,7 @@
 
 ## Service 
 |Intro|Home|Login|Sign Up|
+|:---:|:---:|:---:|:---:|
 |<img src="https://github.com/Seong-A/safety_kick/assets/83965377/e76cb386-8672-4c0e-a824-c3b0358c89cb">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/ba1e602f-a09b-4704-8b58-2ad17be3e56b">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948">|
 
 
