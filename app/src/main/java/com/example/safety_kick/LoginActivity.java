@@ -87,11 +87,11 @@ public class LoginActivity extends AppCompatActivity {
                 firebaseAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, task -> {
                             if (task.isSuccessful()) {
-                                Toast.makeText(LoginActivity.this, "Login Successful", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "로그인 성공! 환영합니다~", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, LoginSuccessActivity.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(LoginActivity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(LoginActivity.this, "로그인 실패 ㅠㅠ", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
