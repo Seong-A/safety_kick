@@ -53,6 +53,7 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         TextView elapsedTimeTextView = findViewById(R.id.time);
         TextView moneyTextView = findViewById(R.id.money);
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,7 +78,6 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         }
 
 
-
         locationListener = new LocationListener() {
             @Override
             public void onLocationChanged(Location location) {
@@ -93,8 +93,7 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
             }
         };
 
-
-        // RentActivity에서 전달한 경과 시간을 받아옴
+        // RentActivity에서 전달한 경과 시간을 받아오기
         Intent intent = getIntent();
         long elapsedTimeMillis = intent.getLongExtra("ELAPSED_TIME", 0);
         // 경과 시간을 형식화하여 문자열로 변환
@@ -107,6 +106,7 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
 
         checkAndUpdateUserName(userTextView);
 
+        // 결제버튼
         findViewById(R.id.payment_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,19 +115,21 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
                 String currentDateAndTime = getCurrentDateAndTime();
 
                 Intent intent = new Intent(PaymentActivity.this, PaymentListActivity.class);
-                intent.putExtra("PAYMENT_AMOUNT", money);
-                intent.putExtra("PAYMENT_DATE", currentDateAndTime);
-                intent.putExtra("CARD_NAME", selectedCardName);
+                intent.putExtra("PAYMENT_AMOUNT", money); // 결제금액
+                intent.putExtra("PAYMENT_DATE", currentDateAndTime); // 결제날짜
+                intent.putExtra("CARD_NAME", selectedCardName); // 카드이름
                 startActivity(intent);
             }
         });
     }
 
+    // 현재 날짜 / 시간
     private String getCurrentDateAndTime() {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
         return sdf.format(new Date());
     }
 
+    // 사용자 이름 찾기
     private void checkAndUpdateUserName(final TextView userTextView) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
@@ -148,12 +150,13 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(PaymentActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PaymentActivity.this, "사용자 데이터 찾기 실패 ㅠㅠ", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
+    // QR코드 위치 업데이트
     private void updateQRCodeLocation(String latitude, String longitude) {
 
             DatabaseReference qrcode1Ref = databaseReference.child("qrcode").child("qrcode1");
@@ -164,7 +167,6 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
 
             Toast.makeText(PaymentActivity.this, "위치가 성공적으로 업데이트되었습니다", Toast.LENGTH_SHORT).show();
     }
-
 
     @Override
     public void onLocationChanged(Location location) {

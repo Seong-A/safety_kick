@@ -2,15 +2,12 @@ package com.example.safety_kick;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -50,6 +47,7 @@ public class LoginActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        // 이메일(id)
         emailEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -61,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+        // 비밀번호
         passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -98,7 +97,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // 회원가입
+        // 회원가입 버튼
         findViewById(R.id.signUp_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // 구글
+        // 구글로 로그인
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -119,7 +118,7 @@ public class LoginActivity extends AppCompatActivity {
         google_btn.setOnClickListener(view -> {
             // 기존에 로그인 했던 계정을 확인한다.
             gsa = GoogleSignIn.getLastSignedInAccount(LoginActivity.this);
-            if (gsa != null) { // 로그인 되있는 경우
+            if (gsa != null) { // 로그인 되어있는 경우
                 Toast.makeText(LoginActivity.this, R.string.status_login, Toast.LENGTH_SHORT).show();
             } else {
                 signIn();
@@ -143,7 +142,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    /* 사용자 정보 가져오기 */
+    // 사용자 정보 가져오기
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount acct = completedTask.getResult(ApiException.class);
@@ -166,7 +165,7 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
-    // [START auth_with_google]
+    // 구글에서 사용자 정보 가져오기
     private void firebaseAuthWithGoogle(String idToken) {
         AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
         firebaseAuth.signInWithCredential(credential)
@@ -178,16 +177,10 @@ public class LoginActivity extends AppCompatActivity {
                         FirebaseUser user = firebaseAuth.getCurrentUser();
                         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                         startActivity(intent);
-                        // updateUI(user);
                     } else {
                         Log.w(TAG, "signInWithCredential:failure", task.getException());
                         Toast.makeText(LoginActivity.this, R.string.failed_login, Toast.LENGTH_SHORT).show();
-                        // updateUI(null);
                     }
                 });
-    }
-
-    private void updateUI(FirebaseUser user) {
-        // 사용자 인터페이스 업데이트
     }
 }

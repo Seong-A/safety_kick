@@ -32,6 +32,7 @@ public class RentListActivity extends AppCompatActivity {
         rentsRef = FirebaseDatabase.getInstance().getReference().child("rents");
         rentListLayout = findViewById(R.id.rentListLayout);
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,6 +44,7 @@ public class RentListActivity extends AppCompatActivity {
         getDataFromFirebase();
     }
 
+    // 데이터베이스에서 데이터 가져오기
     private void getDataFromFirebase() {
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
@@ -79,6 +81,7 @@ public class RentListActivity extends AppCompatActivity {
         }
     }
 
+    // 대여기록
     private void addRentTextView(String date, String time, String fee) {
         // 각 대여 기록을 위한 새 LinearLayout 생성
         LinearLayout newRentLayout = new LinearLayout(this);
@@ -96,19 +99,19 @@ public class RentListActivity extends AppCompatActivity {
         dateTextView.setTextSize(18);
         dateTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
         dateTextView.setTypeface(null, Typeface.BOLD);
-        dateTextView.setPadding(50, 20, 10, 20); // Adjust padding as needed
+        dateTextView.setPadding(50, 20, 10, 20);
 
         TextView timeTextView = new TextView(this);
         timeTextView.setText("이용시간 : " + time);
         timeTextView.setTextSize(15);
         timeTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
-        timeTextView.setPadding(50, 20, 10, 20); // Adjust padding as needed
+        timeTextView.setPadding(50, 20, 10, 20);
 
         TextView feeTextView = new TextView(this);
         feeTextView.setText("이용요금 : " + fee);
         feeTextView.setTextSize(15);
         feeTextView.setTextColor(ContextCompat.getColor(this, R.color.black));
-        feeTextView.setPadding(50, 20, 10, 20); // Adjust padding as needed
+        feeTextView.setPadding(50, 20, 10, 20);
 
         newRentLayout.addView(dateTextView);
         newRentLayout.addView(timeTextView);

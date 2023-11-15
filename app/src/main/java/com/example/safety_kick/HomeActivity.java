@@ -1,16 +1,12 @@
 package com.example.safety_kick;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.target.DrawableImageViewTarget;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -19,6 +15,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // 이용 방법
         findViewById(R.id.run_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,6 +24,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // 로그인
         findViewById(R.id.login_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,6 +33,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // 마이페이지
         findViewById(R.id.mypage_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -44,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +52,7 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        // 지도
         findViewById(R.id.find_kick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -67,6 +68,7 @@ public class HomeActivity extends AppCompatActivity {
         Glide.with(this).asGif().load(gifUrl).into(findKick);
 
 
+        // qr스캔
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Glide.with(this).asGif().load(qrUrl).into(qr);
 
-
+        // 고객센터
         findViewById(R.id.service_center).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

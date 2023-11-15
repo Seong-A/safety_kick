@@ -39,7 +39,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
-        // naver map
+        // 네이버 지도 api
         String naver_client_id = getString(R.string.NAVER_CLIENT_ID);
         NaverMapSdk.getInstance(this).setClient(
                 new NaverMapSdk.NaverCloudPlatformClient(naver_client_id));
@@ -57,7 +57,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
     @UiThread
     @Override
     public void onMapReady(@NonNull NaverMap naverMap) {
-        LatLng markerPosition = new LatLng(34.912884, 126.437832);
+        LatLng markerPosition = new LatLng(34.912884, 126.437832); // 마커 표시
 
         Marker marker = new Marker();
         marker.setPosition(markerPosition);
@@ -80,8 +80,8 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         naverMap.setMinZoom(5.0);   //최소
         naverMap.setMaxZoom(18.0);  //최대
         // 카메라 영역 제한
-        LatLng northWest = new LatLng(31.43, 122.37);   //서북단
-        LatLng southEast = new LatLng(44.35, 132);      //동남단
+        LatLng northWest = new LatLng(31.43, 122.37); //서북단
+        LatLng southEast = new LatLng(44.35, 132); //동남단
         naverMap.setExtent(new LatLngBounds(northWest, southEast));
     }
 
@@ -101,6 +101,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
         }
     }
 
+    // 데이터베이스에 있는 qr 스캔하여 킥보드 대여
     private void checkAndBorrowItem(String scannedData) {
         DatabaseReference qrcodeRef = databaseReference.child("qrcode").child("qrcode1");
 
@@ -121,18 +122,16 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                         intent.putExtra("longitude", longitude);
                         startActivity(intent);
                     } else {
-                        // No matching QR code found
-                        Toast.makeText(MapActivity.this, "No matching QR code found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MapActivity.this, "올바른 QR코드가 아닙니다.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    // QR code data not found
-                    Toast.makeText(MapActivity.this, "QR code data not found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MapActivity.this, "해당 QR코드를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(MapActivity.this, "Failed to retrieve data from the database.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(MapActivity.this, "데이터베이스에서 데이터를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }

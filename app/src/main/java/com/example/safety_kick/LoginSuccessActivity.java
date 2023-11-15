@@ -1,7 +1,5 @@
 package com.example.safety_kick;
 
-import android.Manifest;
-import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -29,7 +27,6 @@ public class LoginSuccessActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference databaseReference;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +35,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference();
 
+        // 이용 방법
         findViewById(R.id.run_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,6 +44,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        // 사용자 이름
         TextView userTextView = findViewById(R.id.user_name);
 
         findViewById(R.id.user_name).setOnClickListener(new View.OnClickListener() {
@@ -56,6 +55,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        // 마이페이지 버튼
         findViewById(R.id.mypage_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +64,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        // 지도에서 킥보드 찾기
         findViewById(R.id.find_kick).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,11 +73,13 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        // find_kick에 gif 파일 올리기
         ImageView findKick = findViewById(R.id.find_kick);
         String gifUrl = "https://cdn.dribbble.com/users/3632750/screenshots/6798569/isometric_smartphone_gps.gif";
 
         Glide.with(this).asGif().load(gifUrl).into(findKick);
 
+        // qr 버튼
         findViewById(R.id.qr).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,12 +88,13 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
+        // qr에 gif 파일 올리기
         ImageView qr = findViewById(R.id.qr);
         String qrUrl = "https://storage.googleapis.com/support-kms-prod/mQmcrC93Ryi2U4x5UdZNeyHQMybbyk71yCVm";
 
         Glide.with(this).asGif().load(qrUrl).into(qr);
 
-
+        //고객센터
         findViewById(R.id.service_center).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -99,11 +103,10 @@ public class LoginSuccessActivity extends AppCompatActivity {
             }
         });
 
-
         checkAndUpdateUserName(userTextView);
     }
 
-
+    // 사용자 이름 불러오기
     private void checkAndUpdateUserName(final TextView userTextView) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
@@ -124,7 +127,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(LoginSuccessActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginSuccessActivity.this, "사용자 불러오기 실패ㅠㅠ", Toast.LENGTH_SHORT).show();
                 }
             });
         }
@@ -146,6 +149,7 @@ public class LoginSuccessActivity extends AppCompatActivity {
         }
     }
 
+    // 데이터베이스에 있는 qr 스캔하여 킥보드 대여
     private void checkAndBorrowItem(String scannedData) {
         DatabaseReference qrcodeRef = databaseReference.child("qrcode").child("qrcode1");
 
@@ -153,9 +157,9 @@ public class LoginSuccessActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 if (dataSnapshot.exists()) {
-                    String qid = dataSnapshot.child("qid").getValue(String.class);
-                    String Latitude = dataSnapshot.child("latitude").getValue(String.class);
-                    String Longitude = dataSnapshot.child("longitude").getValue(String.class);
+                    String qid = dataSnapshot.child("qid").getValue(String.class); // 킥보드 id
+                    String Latitude = dataSnapshot.child("latitude").getValue(String.class); // 위도
+                    String Longitude = dataSnapshot.child("longitude").getValue(String.class); // 경도
 
                     if (qid != null && qid.equals(scannedData)) {
                         Intent intent = new Intent(LoginSuccessActivity.this, AlcoholActivity.class);
@@ -163,16 +167,16 @@ public class LoginSuccessActivity extends AppCompatActivity {
                         intent.putExtra("longitude", Longitude);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(LoginSuccessActivity.this, "No matching QR code found.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginSuccessActivity.this, "올바른 QR코드가 아닙니다.", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(LoginSuccessActivity.this, "QR code data not found.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginSuccessActivity.this, "해당 QR코드를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-                Toast.makeText(LoginSuccessActivity.this, "Failed to retrieve data from the database.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginSuccessActivity.this, "데이터베이스에서 데이터를 찾을 수 없습니다.", Toast.LENGTH_SHORT).show();
             }
         });
     }

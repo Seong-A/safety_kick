@@ -46,6 +46,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
         editTextNewPassword = findViewById(R.id.new_password);
         btnSaveChanges = findViewById(R.id.btnSaveChanges);
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +55,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
             }
         });
 
+        // 수정 내용 저장 버튼
         btnSaveChanges.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,6 +66,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
         checkAndUpdateUserInfo();
     }
 
+    // 사용자 정보 불러오기
     private void checkAndUpdateUserInfo() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
@@ -104,6 +107,7 @@ public class ModifyUserInfoActivity extends AppCompatActivity {
         }
     }
 
+    // 사용자 정보 수정내용 저장
     private void saveChanges() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {

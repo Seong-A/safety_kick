@@ -1,10 +1,8 @@
 package com.example.safety_kick;
 
 import android.content.Intent;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -26,7 +24,6 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ReturnActivity extends AppCompatActivity {
-    private TextView messageTextView;
     private DatabaseReference rentsRef;
     private DatabaseReference qrcodeRef;
 
@@ -42,6 +39,7 @@ public class ReturnActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String elapsedTime = intent.getStringExtra("ELAPSED_TIME");
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +48,7 @@ public class ReturnActivity extends AppCompatActivity {
             }
         });
 
+        // 반납버튼
         findViewById(R.id.return_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

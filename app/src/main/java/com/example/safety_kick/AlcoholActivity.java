@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.ParcelUuid;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,7 +28,6 @@ public class AlcoholActivity extends AppCompatActivity {
     private Handler handler = new Handler();
     private boolean okReceived = false;
     private int consecutiveOkCount = 0;
-    private static final long INTERVAL = 1000; // 1초
     private static final long DURATION = 10000; // 10초
     private long startTime;
     private static final int OK_VALUE = 0;

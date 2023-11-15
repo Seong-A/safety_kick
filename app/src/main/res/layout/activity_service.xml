@@ -23,19 +23,6 @@
             android:layout_margin="7dp"
             app:srcCompat="@drawable/main_logo" />
 
-        <TextView
-            android:id="@+id/titleText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="54dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="30dp"
-            android:text="고객센터"
-            android:textAlignment="center"
-            android:textColor="@color/pink"
-            android:textSize="25sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,8 +40,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="80dp"
+            android:text="고객센터"
+            android:textColor="@color/pink"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:text="도움이 필요하신가요?"
             android:textColor="@color/black"

@@ -14,9 +14,9 @@ public class PaymentListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_payment_pg);
 
         Intent intent = getIntent();
-        double paymentAmount = intent.getDoubleExtra("PAYMENT_AMOUNT", 0);
-        String paymentDate = intent.getStringExtra("PAYMENT_DATE");
-        String cardName = intent.getStringExtra("CARD_NAME");
+        double paymentAmount = intent.getDoubleExtra("PAYMENT_AMOUNT", 0); // 결제내역
+        String paymentDate = intent.getStringExtra("PAYMENT_DATE"); // 결제날짜
+        String cardName = intent.getStringExtra("CARD_NAME"); // 카드이름
 
         TextView paymentAmountTextView = findViewById(R.id.money);
         TextView paymentDateTextView = findViewById(R.id.pay_date);

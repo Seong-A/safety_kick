@@ -32,6 +32,7 @@ public class MypageActivity extends AppCompatActivity {
 
         TextView userTextView = findViewById(R.id.user_welcome);
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +41,7 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
+        // 사용자 정보 수정
         findViewById(R.id.user_modify).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -49,6 +51,7 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
+        // 이용 내역
         findViewById(R.id.rent_list).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,6 +60,7 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
+        // 이용 방법
         findViewById(R.id.run_info).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,7 +69,7 @@ public class MypageActivity extends AppCompatActivity {
             }
         });
 
-
+        // 로그아웃
         findViewById(R.id.logout).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +80,7 @@ public class MypageActivity extends AppCompatActivity {
         checkAndUpdateUserName(userTextView);
     }
 
+    // 사용자 이름 찾기
     private void checkAndUpdateUserName(final TextView userTextView) {
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if (user != null) {
@@ -96,12 +101,13 @@ public class MypageActivity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError databaseError) {
-                    Toast.makeText(MypageActivity.this, "Failed to get user data", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MypageActivity.this, "사용자 데이터 찾기 실패 ㅠㅠ", Toast.LENGTH_SHORT).show();
                 }
             });
         }
     }
 
+    // 로그아웃
     private void logoutUser() {
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(MypageActivity.this, LoginActivity.class);

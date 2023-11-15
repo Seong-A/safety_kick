@@ -1,15 +1,12 @@
 package com.example.safety_kick;
 
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.view.View;
-import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RentActivity extends AppCompatActivity {
-    private TextView messageTextView;
     private long startTimeMillis;
 
     @Override
@@ -17,6 +14,7 @@ public class RentActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_safety_success);
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -25,6 +23,7 @@ public class RentActivity extends AppCompatActivity {
             }
         });
 
+        // 대여버튼
         findViewById(R.id.rent_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -8,7 +8,6 @@ import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import com.example.safety_kick.HomeActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -37,6 +36,7 @@ public class JoinActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
 
+        // 이름
         nameEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -48,6 +48,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        // 이메일
         emailEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -59,6 +60,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        // 비밀번호
         passwordEdit.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         passwordEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -76,7 +78,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
-
+        // 전화번호
         phoneEdit.setInputType(InputType.TYPE_CLASS_PHONE);
 
         phoneEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -90,6 +92,7 @@ public class JoinActivity extends AppCompatActivity {
             }
         });
 
+        // 회원가입버튼
         findViewById(R.id.signUp_btn).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,6 +135,7 @@ public class JoinActivity extends AppCompatActivity {
         return password.matches("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$");
     }
 
+    // 전화번호는 010-0000-0000 형식이어야 함
     private boolean isValidPhoneNumber(String phoneNumber) {
         return phoneNumber.matches("\\d{3}-\\d{4}-\\d{4}");
     }

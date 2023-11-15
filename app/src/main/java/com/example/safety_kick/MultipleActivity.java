@@ -15,6 +15,7 @@ public class MultipleActivity extends AppCompatActivity {
         ImageView previousButton = findViewById(R.id.previousButton);
         ImageView nextButton = findViewById(R.id.nextButton);
 
+        // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -23,22 +24,20 @@ public class MultipleActivity extends AppCompatActivity {
             }
         });
 
-        // 이전 버튼 클릭 시 액션
+        // 이전 버튼 클릭 시 헬멧 인식 화면으로 이동
         previousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 이전 화면으로 이동
                 Intent intent = new Intent(MultipleActivity.this, HelmetActivity.class);
                 startActivity(intent);
             }
         });
 
 
-        // 다음 버튼 클릭 시 액션
+        // 다음 버튼 클릭 시 대여화면으로 이동
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // 다음 화면으로 이동
                 Intent intent = new Intent(MultipleActivity.this, RentActivity.class);
                 startActivity(intent);
             }
