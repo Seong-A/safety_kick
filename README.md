@@ -31,7 +31,7 @@
 ## Configuration
 - Hardware
 
-<img src=https://github.com/Seong-A/safety_kick/assets/83965377/1db9455f-c547-4723-b055-41a0123d2761">
+<img src="https://github.com/Seong-A/safety_kick/assets/83965377/1db9455f-c547-4723-b055-41a0123d2761">
 
 - System
 
@@ -42,7 +42,7 @@
 
 ## Service 
 |Intro|Home|Login|Sign Up|
-|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/e76cb386-8672-4c0e-a824-c3b0358c89cb">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/ba1e602f-a09b-4704-8b58-2ad17be3e56b">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948">
+|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/e76cb386-8672-4c0e-a824-c3b0358c89cb">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/ba1e602f-a09b-4704-8b58-2ad17be3e56b">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948">|<img src="https://github.com/Seong-A/safety_kick/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948">|
 
 
 #### 첫 화면(로고) (스플래시 화면) -> 메인페이지 -> 로그인 (일반 로그인, 구글 로그인) 및 회원가입 -> 메인페이지 이동
