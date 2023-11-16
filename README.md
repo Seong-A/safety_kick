@@ -52,30 +52,18 @@
 
 |LoginSuccess|Mypage|PasswordModify|RunInfo|
 |:---:|:---:|:---:|:---:|
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/61623935-2e76-4236-a1b1-98b46aa044ee" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/7ecd504e-5f1d-47a3-a035-1d34451a4fe0" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/08867fca-5d23-4792-9135-215c7ee16795" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/69164f97-e65e-4179-8ea9-c31b5b8b88f7" width="350" height="700">|
+|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/61623935-2e76-4236-a1b1-98b46aa044ee" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/7ecd504e-5f1d-47a3-a035-1d34451a4fe0" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/08867fca-5d23-4792-9135-215c7ee16795" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/69164f97-e65e-4179-8ea9-c31b5b8b88f7" width="350" height="700">|
 
 |ServiceCenter|MapAPI|QRScan|Alcohol|
 |:---:|:---:|:---:|:---:|
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/9dcf7cd4-2235-4100-82d6-42cabd474806" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/d9702aa2-249c-4f10-a1fe-9b1d0e6d749e" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/a831c3b0-5cc4-48a0-8d53-b2ff9f16ad49" width="350" height="700">
-| |
+|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/9dcf7cd4-2235-4100-82d6-42cabd474806" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/d9702aa2-249c-4f10-a1fe-9b1d0e6d749e" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/a831c3b0-5cc4-48a0-8d53-b2ff9f16ad49" width="350" height="700">| |
 
 |Helmet|MultipleRide|Rent|Return|
 |:---:|:---:|:---:|:---:|
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/1e408ee9-6091-4979-b775-4d6cb0af922a" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/94a35077-c178-41ce-91e6-d080e410c110" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/fbd94235-f704-4749-83c9-b2bf1e31fd1b" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/30a97f8c-9abd-4163-9760-16d3ca944500" width="350" height="700">|
+|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/1e408ee9-6091-4979-b775-4d6cb0af922a" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/94a35077-c178-41ce-91e6-d080e410c110" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/fbd94235-f704-4749-83c9-b2bf1e31fd1b" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/30a97f8c-9abd-4163-9760-16d3ca944500" width="350" height="700">|
 
 |Payment|PaymentList|RunList|...|
 |:---:|:---:|:---:|:---:|
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/70b717d2-b8a1-4889-a406-7579cc64ec92" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/14408a62-7795-45f2-9e78-dd2fb9108ef6" width="350" height="700">
-|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/3b931a2f-6085-4d2c-9733-7e21c3a2a709" width="350" height="700">
-| |
+|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/70b717d2-b8a1-4889-a406-7579cc64ec92" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/14408a62-7795-45f2-9e78-dd2fb9108ef6" width="350" height="700">|<img src="https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/3b931a2f-6085-4d2c-9733-7e21c3a2a709" width="350" height="700">| |
 
 
