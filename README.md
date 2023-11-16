@@ -30,15 +30,16 @@
 
 ## Configuration
 - Hardware
-  
-  ![Hardware](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/1db9455f-c547-4723-b055-41a0123d2761)
+
+<img src="https://github.com/Seong-A/safety_kick/assets/83965377/1db9455f-c547-4723-b055-41a0123d2761">
 
 - System
-  
-  ![System](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/25cfb244-4798-4796-a950-fd4946c3194f)
+
+<img src="https://github.com/Seong-A/safety_kick/assets/83965377/25cfb244-4798-4796-a950-fd4946c3194f">
 
 ## Flow Chart
-  ![Flow Chart](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/f0644727-6159-4432-b595-a8dff4cc94d3)
+<img src="https://github.com/Seong-A/safety_kick/assets/83965377/f0644727-6159-4432-b595-a8dff4cc94d3">
+
   
 ## Service 
 |Intro|Home|Login|Sign Up|
