@@ -41,12 +41,12 @@
   ![Flow Chart](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/f0644727-6159-4432-b595-a8dff4cc94d3)
 
 ## Service 
-  |Intro|Home|Login|Sign Up|
-  |:---:|:---:|:---:|:---:|
-  ![Intro](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/e76cb386-8672-4c0e-a824-c3b0358c89cb)
-  ![Home](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/ba1e602f-a09b-4704-8b58-2ad17be3e56b)
-  ![Login](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948)
-  ![Sign Up](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/7b809c12-f718-4a88-907c-7ac1031dad4a)
+|Intro|Home|Login|Sign Up|
+|:---:|:---:|:---:|:---:|
+![Intro](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/e76cb386-8672-4c0e-a824-c3b0358c89cb)
+![Home](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/ba1e602f-a09b-4704-8b58-2ad17be3e56b)
+![Login](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/822ccf46-2856-4261-b23b-4edb015d7948)
+![Sign Up](https://github.com/Seong-A/safety_kick/raw/main/assets/83965377/7b809c12-f718-4a88-907c-7ac1031dad4a)
 
 
 |LoginSuccess|Mypage|PasswordModify|RunInfo|
