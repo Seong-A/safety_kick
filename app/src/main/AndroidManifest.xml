@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:dist="http://schemas.android.com/apk/distribution"
     xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.CAMERA"/>
@@ -10,6 +11,8 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
+    <dist:module dist:instant="true" />
+    <uses-feature android:name="android.hardware.camera" />
 
 
     <application
@@ -55,7 +58,7 @@
 
             <meta-data
                 android:name="android.app.lib_name"
-                android:value="" />
+                android:value="true" />
         </activity>
         <activity android:name=".LoginSuccessActivity" android:exported="true" />
         <activity android:name=".MypageActivity" android:exported="true" />
@@ -66,11 +69,20 @@
         <activity android:name=".AlcoholActivity" android:exported="true"  />
         <activity android:name=".HelmetActivity" android:exported="true" />
         <activity android:name=".MultipleActivity" android:exported="true" />
-        <activity android:name=".ReturnActivity" android:exported="true" />
+        <activity android:name=".ReturnActivity"
+            android:clearTaskOnLaunch="true"
+            android:configChanges="orientation|screenLayout|screenSize|smallestScreenSize"
+            android:exported="true"
+            android:resizeableActivity="true"
+            android:rotationAnimation="seamless"
+            android:theme="@style/AppTheme"
+            tools:targetApi="O" />
         <activity android:name=".PaymentActivity" android:exported="true" />
         <activity android:name=".RentListActivity" android:exported="true" />
         <activity android:name=".PaymentListActivity" android:exported="true" />
         <activity android:name=".RunInfoActivity" android:exported="true" />
+
+
 
     </application>
 

@@ -1,6 +1,7 @@
 package com.example.safety_kick;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.safety_kick.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +32,8 @@ public class ReturnActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ActivityMainBinding activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
         setContentView(R.layout.activity_return);
 
         rentsRef = FirebaseDatabase.getInstance().getReference().child("rents");
@@ -95,6 +99,7 @@ public class ReturnActivity extends AppCompatActivity {
                                 startActivity(paymentIntent);
 
                                 finish(); // 현재 액티비티 종료
+
                             } else {
                             }
                         }
@@ -114,5 +119,15 @@ public class ReturnActivity extends AppCompatActivity {
         Date currentDate = Calendar.getInstance().getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
         return dateFormat.format(currentDate);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (Build.VERSION.SDK_INT == Build.VERSION_CODES.Q) {
+
+            finishAfterTransition();
+        } else {
+            super.onBackPressed();
+        }
     }
 }
