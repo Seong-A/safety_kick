@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.safety_kick.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,14 +22,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import org.tensorflow.lite.task.vision.classifier.Classifications;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 public class ReturnActivity extends AppCompatActivity {
     private DatabaseReference rentsRef;
     private DatabaseReference qrcodeRef;
+    private CameraFragment cameraFragment;
+
+    public void handleImageAnalysisResult(List<Classifications> results) {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +52,14 @@ public class ReturnActivity extends AppCompatActivity {
         // 이전에 RentActivity에서 전달한 시간 데이터를 가져옴
         Intent intent = getIntent();
         String elapsedTime = intent.getStringExtra("ELAPSED_TIME");
+
+        if (savedInstanceState == null) {
+            cameraFragment = new CameraFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.add(R.id.fragment_container, cameraFragment);
+            fragmentTransaction.commit();
+        }
 
         // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
@@ -62,6 +80,15 @@ public class ReturnActivity extends AppCompatActivity {
                 if (user != null) {
                     // rent_id 자동 생성
                     String rid = rentsRef.push().getKey();
+
+                    // 이미지 분석 결과를 가져오는 메서드 또는 데이터를 얻는 로직이 필요
+                    List<Classifications> imageAnalysisResults = getImageAnalysisResults();
+
+                    if (cameraFragment != null) {
+                        cameraFragment.onImageAnalysisResult(imageAnalysisResults);
+                    } else {
+                        Log.e("ReturnActivity", "cameraFragment is null");
+                    }
 
                     qrcodeRef.child("qid").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -129,5 +156,10 @@ public class ReturnActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    private List<Classifications> getImageAnalysisResults() {
+        // 구현 필요
+        return null;
     }
 }

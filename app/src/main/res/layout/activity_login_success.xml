@@ -47,7 +47,7 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/run_info"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="15dp"
             android:layout_gravity="center"
             android:layout_marginTop="120dp"
@@ -61,7 +61,7 @@
 
         <TextView
             android:id="@+id/user_name"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginBottom="10dp"
@@ -74,56 +74,97 @@
             android:textStyle="bold"/>
 
         <LinearLayout
-            android:layout_width="350dp"
+            android:layout_width="370dp"
             android:layout_height="250dp"
             android:layout_margin="20dp"
             android:layout_gravity="center_horizontal"
             android:orientation="horizontal">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewgps"
+            <FrameLayout
+                android:id="@+id/frameFindKick"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="10dp">
+                android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/find_kick"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/gps"
-                    android:scaleX="2.2"
-                    android:scaleY="2.5" />
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="10dp">
+
+                    <ImageView
+                        android:id="@+id/find_kick"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:scaleX="2.2"
+                        android:scaleY="2.5"
+                        android:src="@drawable/gps" />
+
+                    <TextView
+                        android:id="@+id/find_kick_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="20dp"
+                        android:text="킥보드 찾기"
+                        android:textColor="@color/yellow"
+                        android:textSize="23sp"
+                        android:textStyle="bold"/>
+
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
 
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardViewqr"
+            <FrameLayout
+                android:id="@+id/frameQr"
                 android:layout_width="130dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
                 android:layout_marginTop="30dp"
-                android:layout_weight="1"
-                app:cardCornerRadius="10dp">
+                android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/qr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/qr"
-                    android:scaleX="1.5"
-                    android:scaleY="1.5" />
-            </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:cardCornerRadius="10dp">
 
+                    <ImageView
+                        android:id="@+id/qr"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:background="@android:color/transparent"
+                        android:scaleType="fitCenter"
+                        android:scaleX="1.5"
+                        android:scaleY="1.5"
+                        android:src="@drawable/qr" />
+
+                    <TextView
+                        android:id="@+id/qr_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|bottom"
+                        android:layout_marginBottom="20dp"
+                        android:text="QR 스캔하고\n   대여하기"
+                        android:textColor="@color/yellow"
+                        android:textSize="23sp"
+                        android:textStyle="bold"/>
+
+                </androidx.cardview.widget.CardView>
+            </FrameLayout>
         </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/service_center"
-            android:layout_width="330dp"
+            android:layout_width="350dp"
             android:layout_height="30dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"

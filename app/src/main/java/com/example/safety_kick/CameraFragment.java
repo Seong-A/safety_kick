@@ -43,10 +43,13 @@ public class CameraFragment extends Fragment
     private ProcessCameraProvider cameraProvider;
     private final Object task = new Object();
 
-    /**
-     * Blocking camera operations are performed using this executor
-     */
     private ExecutorService cameraExecutor;
+
+    public void onImageAnalysisResult(List<Classifications> results) {
+        // 이미지 분석 결과를 처리하는 로직 추가
+        // 결과를 ReturnActivity로 전달
+        ((ReturnActivity) requireActivity()).handleImageAnalysisResult(results);
+    }
 
     @Nullable
     @Override
@@ -101,10 +104,15 @@ public class CameraFragment extends Fragment
     @Override
     public void onConfigurationChanged(@NonNull Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        if (imageAnalyzer != null) {
-            imageAnalyzer.setTargetRotation(fragmentCameraBinding.viewFinder.getDisplay().getRotation());
-        }
+        imageAnalyzer.setTargetRotation(
+                fragmentCameraBinding.viewFinder.getDisplay().getRotation()
+        );
     }
+
+    private void initBottomSheetControls() {
+
+    }
+
 
     // Initialize CameraX, and prepare to bind the camera use cases
     private void setUpCamera() {
@@ -129,15 +137,18 @@ public class CameraFragment extends Fragment
     private void bindCameraUseCases() {
         // CameraSelector - makes assumption that we're only using the back
         // camera
-        CameraSelector cameraSelector = new CameraSelector.Builder()
-                .requireLensFacing(CameraSelector.LENS_FACING_FRONT)
-                .build();
+        CameraSelector.Builder cameraSelectorBuilder = new CameraSelector.Builder();
+        CameraSelector cameraSelector = cameraSelectorBuilder
+                .requireLensFacing(CameraSelector.LENS_FACING_FRONT).build();
 
         // Preview. Only using the 4:3 ratio because this is the closest to
         // our model
         Preview preview = new Preview.Builder()
                 .setTargetAspectRatio(AspectRatio.RATIO_4_3)
-                .setTargetRotation(fragmentCameraBinding.viewFinder.getDisplay().getRotation())
+                .setTargetRotation(
+                        fragmentCameraBinding.viewFinder
+                                .getDisplay().getRotation()
+                )
                 .build();
 
         // ImageAnalysis. Using RGBA 8888 to match how our models work
@@ -148,7 +159,6 @@ public class CameraFragment extends Fragment
                 .setOutputImageFormat(ImageAnalysis.OUTPUT_IMAGE_FORMAT_RGBA_8888)
                 .build();
 
-        // The analyzer can then be assigned to the instance
         imageAnalyzer.setAnalyzer(cameraExecutor, image -> {
             if (bitmapBuffer == null) {
                 bitmapBuffer = Bitmap.createBitmap(
@@ -159,12 +169,9 @@ public class CameraFragment extends Fragment
             classifyImage(image);
         });
 
-        // Must unbind the use-cases before rebinding them
         cameraProvider.unbindAll();
 
         try {
-            // A variable number of use-cases can be passed here -
-            // camera provides access to CameraControl & CameraInfo
             cameraProvider.bindToLifecycle(
                     this,
                     cameraSelector,
@@ -172,22 +179,20 @@ public class CameraFragment extends Fragment
                     imageAnalyzer
             );
 
-            // Attach the viewfinder's surface provider to preview use case
-            preview.setSurfaceProvider(fragmentCameraBinding.viewFinder.getSurfaceProvider());
+            preview.setSurfaceProvider(
+                    fragmentCameraBinding.viewFinder.getSurfaceProvider()
+            );
         } catch (Exception exc) {
             Log.e(TAG, "Use case binding failed", exc);
         }
     }
 
     private void classifyImage(@NonNull ImageProxy image) {
-        // Copy out RGB bits to the shared bitmap buffer
         bitmapBuffer.copyPixelsFromBuffer(image.getPlanes()[0].getBuffer());
 
         int imageRotation = image.getImageInfo().getRotationDegrees();
         image.close();
         synchronized (task) {
-            // Pass Bitmap and rotation to the image classifier helper for
-            // processing and classification
             imageClassifierHelper.classify(bitmapBuffer, imageRotation);
         }
     }
@@ -202,13 +207,16 @@ public class CameraFragment extends Fragment
 
     @Override
     public void onResults(List<Classifications> results, long inferenceTime) {
-        if (isAdded()) { // Check if the fragment is attached
+        // Ensure the fragment is attached to an activity
+        if (!isAdded()) {
+            return;
+        }
+
+        if (results != null && results.size() > 0) {
             requireActivity().runOnUiThread(() -> {
                 classificationResultsAdapter.updateResults(results.get(0).getCategories());
-                // fragmentCameraBinding.bottomSheetLayout.inferenceTimeVal
-                //         .setText(String.format(Locale.US, "%d ms", inferenceTime));
             });
         }
     }
-}
 
+}

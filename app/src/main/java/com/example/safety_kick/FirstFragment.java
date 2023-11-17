@@ -16,10 +16,6 @@ import com.example.safety_kick.R;
 /** Handles requesting permissions for the device before using the camera */
 public class FirstFragment extends Fragment {
 
-    /**
-     * Convenience method used to check if all permissions required by this
-     * app are granted
-     */
     public static boolean hasPermission(Context context) {
         return ContextCompat.checkSelfPermission(context,
                 Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED;

@@ -7,6 +7,8 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -52,6 +54,9 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         TextView userTextView = findViewById(R.id.user_name);
         TextView elapsedTimeTextView = findViewById(R.id.time);
         TextView moneyTextView = findViewById(R.id.money);
+        EditText payDateEditText = findViewById(R.id.editCardNumber);
+        EditText editExpDateEditText = findViewById(R.id.editExpDate);
+        EditText editCVVEditText = findViewById(R.id.editCVV);
 
         // 로고
         findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
@@ -119,6 +124,89 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
                 intent.putExtra("PAYMENT_DATE", currentDateAndTime); // 결제날짜
                 intent.putExtra("CARD_NAME", selectedCardName); // 카드이름
                 startActivity(intent);
+            }
+        });
+
+        payDateEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String input = editable.toString().replaceAll("-", "");
+
+                // 하이픈을 추가
+                if (input.length() > 0 && (input.length() % 4) == 0) {
+                    StringBuilder formattedDate = new StringBuilder();
+                    for (int i = 0; i < input.length(); i++) {
+                        if (i > 0 && (i % 4) == 0) {
+                            formattedDate.append("-");
+                        }
+                        formattedDate.append(input.charAt(i));
+                    }
+
+                    // 텍스트 변경 시에는 다시 TextWatcher를 제거하여 무한 루프를 방지
+                    payDateEditText.removeTextChangedListener(this);
+                    payDateEditText.setText(formattedDate.toString());
+                    payDateEditText.setSelection(formattedDate.length());
+                    payDateEditText.addTextChangedListener(this);
+                }
+            }
+        });
+
+        editExpDateEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String input = editable.toString().replaceAll("/", "");
+
+                // 슬래시를 추가
+                if (input.length() > 0 && (input.length() % 2) == 0) {
+                    StringBuilder formattedDate = new StringBuilder();
+                    for (int i = 0; i < input.length(); i++) {
+                        if (i > 0 && (i % 2) == 0) {
+                            formattedDate.append("/");
+                        }
+                        formattedDate.append(input.charAt(i));
+                    }
+
+                    // 텍스트 변경 시에는 다시 TextWatcher를 제거하여 무한 루프를 방지
+                    editExpDateEditText.removeTextChangedListener(this);
+                    editExpDateEditText.setText(formattedDate.toString());
+                    editExpDateEditText.setSelection(formattedDate.length());
+                    editExpDateEditText.addTextChangedListener(this);
+                }
+            }
+        });
+
+        editCVVEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                // 3글자 제한
+                if (editable.length() > 3) {
+                    editable.delete(3, editable.length());
+                }
             }
         });
     }
@@ -226,5 +314,7 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
         EditText cardNameEditText = findViewById(R.id.CardName);
         cardNameEditText.setText(cardName);
     }
+
+
 
 }

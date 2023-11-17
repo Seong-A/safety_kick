@@ -6,7 +6,6 @@ import android.os.SystemClock;
 import android.util.Log;
 import java.io.IOException;
 import java.util.List;
-import org.tensorflow.lite.gpu.CompatibilityList;
 import org.tensorflow.lite.support.image.ImageProcessor;
 import org.tensorflow.lite.support.image.TensorImage;
 import org.tensorflow.lite.support.image.ops.Rot90Op;
@@ -14,7 +13,6 @@ import org.tensorflow.lite.task.core.BaseOptions;
 import org.tensorflow.lite.task.vision.classifier.Classifications;
 import org.tensorflow.lite.task.vision.classifier.ImageClassifier;
 
-/** Helper class for wrapping Image Classification actions */
 public class ImageClassifierHelper {
     private static final String TAG = "ImageClassifierHelper";
     private static final int DELEGATE_CPU = 0;
@@ -29,7 +27,6 @@ public class ImageClassifierHelper {
     private final ClassifierListener imageClassifierListener;
     private ImageClassifier imageClassifier;
 
-    /** Helper class for wrapping Image Classification actions */
     public ImageClassifierHelper(
             Float threshold,
             int numThreads,
@@ -54,46 +51,24 @@ public class ImageClassifierHelper {
     ) {
         return new ImageClassifierHelper(
                 0.5f,
-                3, // 수정된 부분: numThreads를 3으로 변경
-                1, // 수정된 부분: maxResults를 1로 변경
+                3,
+                1,
                 0,
-                MODEL_EFFICIENTNETV2, // 수정된 부분: MODEL_EFFICIENTNETV2로 변경
+                MODEL_EFFICIENTNETV2,
                 context,
                 listener
         );
     }
 
-    public float getThreshold() {
-        return threshold;
-    }
 
     public void setThreshold(float threshold) {
         this.threshold = threshold;
-    }
-
-    public int getNumThreads() {
-        return numThreads;
-    }
-
-    public void setNumThreads(int numThreads) {
-        this.numThreads = numThreads;
     }
 
     public int getMaxResults() {
         return maxResults;
     }
 
-    public void setMaxResults(int maxResults) {
-        this.maxResults = maxResults;
-    }
-
-    public void setCurrentDelegate(int currentDelegate) {
-        this.currentDelegate = currentDelegate;
-    }
-
-    public void setCurrentModel(int currentModel) {
-        this.currentModel = currentModel;
-    }
 
     private void setupImageClassifier() {
         ImageClassifier.ImageClassifierOptions.Builder optionsBuilder =
@@ -108,7 +83,6 @@ public class ImageClassifierHelper {
             case DELEGATE_CPU:
                 // Default
                 break;
-            // GPU 및 NNAPI에 대한 처리는 생략
         }
 
         String modelName;
@@ -117,7 +91,7 @@ public class ImageClassifierHelper {
                 modelName = "efficientnet-lite2.tflite";
                 break;
             default:
-                modelName = "mobilenetv1.tflite";
+                modelName = "efficientnet-lite2.tflite";
         }
         try {
             imageClassifier =
@@ -158,7 +132,6 @@ public class ImageClassifierHelper {
         imageClassifier = null;
     }
 
-    /** Listener for passing results back to calling class */
     public interface ClassifierListener {
         void onError(String error);
 
