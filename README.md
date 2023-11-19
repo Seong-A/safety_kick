@@ -34,7 +34,7 @@
 ## Configuration
 - Hardware
 
-<img width="400" src="https://github.com/Seong-A/safety_kick/assets/83965377/ad036deb-2009-462c-994e-d8ba44210160">
+<img width="600" src="https://github.com/Seong-A/safety_kick/assets/83965377/ad036deb-2009-462c-994e-d8ba44210160">
 
 - System
 
