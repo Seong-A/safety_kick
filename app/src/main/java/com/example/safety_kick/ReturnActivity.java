@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.safety_kick.databinding.ActivityMainBinding;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -42,8 +41,6 @@ public class ReturnActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityMainBinding activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(activityMainBinding.getRoot());
         setContentView(R.layout.activity_return);
 
         rentsRef = FirebaseDatabase.getInstance().getReference().child("rents");
@@ -60,15 +57,6 @@ public class ReturnActivity extends AppCompatActivity {
             fragmentTransaction.add(R.id.fragment_container, cameraFragment);
             fragmentTransaction.commit();
         }
-
-        // 로고
-        findViewById(R.id.logo).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ReturnActivity.this, LoginSuccessActivity.class);
-                startActivity(intent);
-            }
-        });
 
         // 반납버튼
         findViewById(R.id.return_btn).setOnClickListener(new View.OnClickListener() {

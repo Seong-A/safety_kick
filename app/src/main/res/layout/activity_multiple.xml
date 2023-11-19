@@ -18,9 +18,9 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="81dp"
-            android:layout_height="88dp"
-            android:layout_margin="7dp"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_margin="14dp"
             app:srcCompat="@drawable/main_logo" />
 
 
@@ -38,17 +38,15 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        <ImageView
+            android:id="@+id/multiple_test"
+            android:layout_width="306dp"
+            android:layout_height="41dp"
+            android:layout_gravity="center"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="130dp"
             android:layout_marginEnd="30dp"
-            android:text="다인 탑승 방지"
-            android:textAlignment="center"
-            android:textColor="@color/pink"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            android:src="@drawable/multiple_test" />
 
         <TextView
             android:layout_width="match_parent"
@@ -58,7 +56,8 @@
             android:layout_marginEnd="30dp"
             android:text="안전을 위해 한 명만 탑승해주세요"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="match_parent"
@@ -78,7 +77,7 @@
             android:layout_height="300dp"
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
-            app:srcCompat="@drawable/multiple" />
+            app:srcCompat="@drawable/multiple_img" />
 
         <LinearLayout
             android:id="@+id/ButtonControlLayout"

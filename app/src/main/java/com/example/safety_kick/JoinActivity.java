@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.telephony.PhoneNumberFormattingTextWatcher;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -80,6 +84,7 @@ public class JoinActivity extends AppCompatActivity {
 
         // 전화번호
         phoneEdit.setInputType(InputType.TYPE_CLASS_PHONE);
+        phoneEdit.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
 
         phoneEdit.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -124,12 +129,57 @@ public class JoinActivity extends AppCompatActivity {
                                 Intent intent = new Intent(JoinActivity.this, LoginActivity.class);
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(JoinActivity.this, "회원가입 실패ㅠㅠ", Toast.LENGTH_SHORT).show();
+                                if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                    // 이메일이 이미 사용 중인 경우 처리
+                                    // 사용자에게 오류 메시지를 표시하는 것이 좋습니다.
+                                    Toast.makeText(JoinActivity.this, "이미 사용 중인 이메일 주소입니다.", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    // 기타 등록 실패 처리
+                                    Toast.makeText(JoinActivity.this, "등록 실패. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
             }
         });
     }
+
+
+    private class PhoneNumberFormattingTextWatcher implements TextWatcher {
+        private boolean isFormatting;
+
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+            if (isFormatting) {
+                return;
+            }
+
+            isFormatting = true;
+
+            // Remove old dashes
+            String digits = s.toString().replaceAll("-", "");
+
+            // Insert new dashes in the appropriate places
+            if (digits.length() >= 4 && digits.length() <= 7) {
+                digits = digits.substring(0, 3) + "-" + digits.substring(3);
+            } else if (digits.length() >= 8) {
+                digits = digits.substring(0, 3) + "-" + digits.substring(3, 7) + "-" + digits.substring(7);
+            }
+
+            phoneEdit.setText(digits);
+            phoneEdit.setSelection(phoneEdit.getText().length());
+
+            isFormatting = false;
+        }
+    }
+
     private boolean isValidPassword(String password) {
         // 비밀번호는 영문과 숫자의 조합으로 8자 이상이어야 함
         return password.matches("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$");

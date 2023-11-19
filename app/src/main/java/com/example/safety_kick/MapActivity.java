@@ -116,7 +116,7 @@ public class MapActivity extends AppCompatActivity implements OnMapReadyCallback
                     if (qid != null && qid.equals(scannedData)) {
                         // Matching QR code found
                         // Navigate to AlcoholActivity
-                        Intent intent = new Intent(MapActivity.this, HelmetActivity.class);
+                        Intent intent = new Intent(MapActivity.this, AlcoholActivity.class);
                         // Pass the latitude and longitude to the next activity if needed
                         intent.putExtra("latitude", latitude);
                         intent.putExtra("longitude", longitude);

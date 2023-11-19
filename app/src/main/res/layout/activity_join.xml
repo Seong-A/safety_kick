@@ -6,27 +6,22 @@
     android:layout_height="match_parent"
     tools:context=".JoinActivity">
 
-    <TextView
-        android:id="@+id/titleText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/signup"
+        android:layout_width="350dp"
+        android:layout_height="50dp"
         android:layout_gravity="center"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="110dp"
+        android:layout_marginEnd="30dp"
         android:layout_marginBottom="60dp"
-        android:text="SIGN UP"
-        android:textAlignment="center"
-        android:textColor="@color/pink"
-        android:textSize="48sp"
-        android:textStyle="bold" />
-
+        android:src="@drawable/signup" />
 
     <EditText
         android:id="@+id/name_edit"
         android:layout_width="350dp"
         android:layout_height="60dp"
-        android:layout_below="@id/titleText"
+        android:layout_below="@id/signup"
         android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"

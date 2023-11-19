@@ -8,28 +8,9 @@
     android:layout_height="match_parent"
     tools:context=".ReturnActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/logo"
-            android:layout_width="81dp"
-            android:layout_height="88dp"
-            android:layout_margin="7dp"
-            app:srcCompat="@drawable/main_logo" />
-    </LinearLayout>
-
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:layout_constraintBottom_toTopOf="@id/return_btn">
 
         <androidx.fragment.app.FragmentContainerView

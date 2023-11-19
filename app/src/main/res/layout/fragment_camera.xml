@@ -15,7 +15,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_results"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="65dp"
         android:layout_gravity="bottom"
         android:layout_marginBottom="@dimen/bottom_sheet_peek_height"
         android:background="@color/white"

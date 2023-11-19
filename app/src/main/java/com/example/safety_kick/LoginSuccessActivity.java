@@ -2,6 +2,9 @@ package com.example.safety_kick;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -118,9 +121,16 @@ public class LoginSuccessActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         String name = dataSnapshot.child("name").getValue(String.class);
                         if (name != null) {
-                            String welcomeMessage = name + "님, 환영합니다~";
-                            userTextView.setText(name);
-                            userTextView.setText(welcomeMessage);
+                            String welcomeMessage = name + "님이" + "\n지구를 아껴준 시간 🌱";
+
+                            SpannableString spannableString = new SpannableString(welcomeMessage);
+                            ForegroundColorSpan nameColor = new ForegroundColorSpan(getResources().getColor(R.color.pink));
+                            ForegroundColorSpan timeColor = new ForegroundColorSpan(getResources().getColor(R.color.black));
+
+                            spannableString.setSpan(nameColor, 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            spannableString.setSpan(timeColor, name.length(), welcomeMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            userTextView.setText(spannableString);
                         }
                     }
                 }

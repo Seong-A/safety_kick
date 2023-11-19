@@ -15,9 +15,9 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="81dp"
-            android:layout_height="88dp"
-            android:layout_margin="7dp"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_margin="14dp"
             app:srcCompat="@drawable/main_logo" />
 
         <TextView
@@ -25,8 +25,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textColor="@color/white"
-            android:text="TextView" />
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/mypage_btn"
@@ -48,7 +47,7 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/run_info"
             android:layout_width="350dp"
-            android:layout_height="15dp"
+            android:layout_height="10dp"
             android:layout_gravity="center"
             android:layout_marginTop="120dp"
             android:layout_marginBottom="20dp"
@@ -57,7 +56,7 @@
             android:text="📑 세이프티킥 이용방법"
             android:textColor="@color/black"
             android:textSize="22dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login_btn"
@@ -67,9 +66,9 @@
             android:layout_marginBottom="10dp"
             android:layout_weight="1"
             android:background="@drawable/btn_background"
-            android:text="로그인"
-            android:textColor="@color/white"
-            android:textSize="25dp"
+            android:text="로그인해야\n 대여할 수 있어요 🛴"
+            android:textColor="@color/black"
+            android:textSize="23dp"
             android:textStyle="bold"/>
 
         <LinearLayout
@@ -110,10 +109,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|bottom"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="15dp"
                         android:text="킥보드 찾기"
                         android:textColor="@color/yellow"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"/>
 
                 </androidx.cardview.widget.CardView>
@@ -151,10 +150,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|bottom"
-                        android:layout_marginBottom="20dp"
+                        android:layout_marginBottom="148dp"
+                        android:layout_marginRight="15dp"
                         android:text="QR 스캔하고\n   대여하기"
                         android:textColor="@color/yellow"
-                        android:textSize="23sp"
+                        android:textSize="20sp"
                         android:textStyle="bold"/>
 
                 </androidx.cardview.widget.CardView>
@@ -164,16 +164,17 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/service_center"
             android:layout_width="350dp"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
             android:background="@drawable/btn_background"
             android:text="세이프티킥 고객센터"
-            android:textColor="@color/white"
-            android:textSize="25dp"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textSize="22dp"
+            android:textStyle="bold"/>
+
     </LinearLayout>
 
 

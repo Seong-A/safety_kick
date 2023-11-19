@@ -18,9 +18,9 @@
 
         <ImageView
             android:id="@+id/logo"
-            android:layout_width="81dp"
-            android:layout_height="88dp"
-            android:layout_margin="7dp"
+            android:layout_width="140dp"
+            android:layout_height="70dp"
+            android:layout_margin="14dp"
             app:srcCompat="@drawable/main_logo" />
 
     </LinearLayout>
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:gravity="center"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="90dp"
             android:text="고객센터"
             android:textColor="@color/pink"
             android:textSize="30dp"

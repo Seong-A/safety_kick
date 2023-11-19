@@ -8,7 +8,10 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
@@ -229,9 +232,16 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
                     if (dataSnapshot.exists()) {
                         String name = dataSnapshot.child("name").getValue(String.class);
                         if (name != null) {
-                            String welcomeMessage = "🤍" + name + "🤍";
-                            userTextView.setText(name);
-                            userTextView.setText(welcomeMessage);
+                            String welcomeMessage = name + "님이" + "\n지구를 아껴준 시간 🌱";
+
+                            SpannableString spannableString = new SpannableString(welcomeMessage);
+                            ForegroundColorSpan nameColor = new ForegroundColorSpan(getResources().getColor(R.color.pink));
+                            ForegroundColorSpan timeColor = new ForegroundColorSpan(getResources().getColor(R.color.black));
+
+                            spannableString.setSpan(nameColor, 0, name.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                            spannableString.setSpan(timeColor, name.length(), welcomeMessage.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+                            userTextView.setText(spannableString);
                         }
                     }
                 }
@@ -243,6 +253,8 @@ public class PaymentActivity extends AppCompatActivity implements LocationListen
             });
         }
     }
+
+
 
     // QR코드 위치 업데이트
     private void updateQRCodeLocation(String latitude, String longitude) {

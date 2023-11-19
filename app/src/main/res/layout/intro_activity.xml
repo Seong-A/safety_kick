@@ -6,9 +6,9 @@
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="394dp"
-        android:layout_height="wrap_content"
+        android:layout_width="520dp"
+        android:layout_height="747dp"
         android:layout_gravity="center"
-        android:src="@drawable/logo1" />
+        android:src="@drawable/logo1"></ImageView>
 
 </LinearLayout>

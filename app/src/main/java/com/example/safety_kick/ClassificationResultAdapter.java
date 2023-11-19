@@ -91,7 +91,7 @@ public class ClassificationResultAdapter
         public void bind(Category category) {
             if (category != null) {
                 if ("crash helmet".equals(category.getLabel())) {
-                    tvLabel.setText("헬멧 착용중");
+                    tvLabel.setText("안전모 착용중");
                     tvLabel.setTypeface(null, Typeface.BOLD);
                     tvLabel.setTextColor(Color.rgb(0, 128, 0)); // 짙은 초록색
                 } else {
@@ -100,7 +100,7 @@ public class ClassificationResultAdapter
             } else {
                 // Check if '헬멧 착용중' text hasn't been shown for the last 5 seconds
                 if (System.currentTimeMillis() - lastHelmetTime >= NO_HELMET_THRESHOLD) {
-                    tvLabel.setText("헬멧 미착용");
+                    tvLabel.setText("안전모 미착용");
                     tvLabel.setTypeface(null, Typeface.BOLD);
                     tvLabel.setTextColor(Color.rgb(255, 0, 0)); // 빨강색
                     playSound(); // 음성 재생

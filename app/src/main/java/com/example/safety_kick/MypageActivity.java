@@ -92,7 +92,7 @@ public class MypageActivity extends AppCompatActivity {
                     if (dataSnapshot.exists()) {
                         String name = dataSnapshot.child("name").getValue(String.class);
                         if (name != null) {
-                            String welcomeMessage = "웰컴 ~" + "  🤍" + name + "🤍";
+                            String welcomeMessage =name;
                             userTextView.setText(name);
                             userTextView.setText(welcomeMessage);
                         }
