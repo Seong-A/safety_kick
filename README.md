@@ -2,6 +2,9 @@
 ## 센서 결합 안전 전동킥보드
 센서를 부착하여 음주상태와 다인 탑승을 검증하고 카메라를 통한 객체 인식으로 안전모 착용을 검증
 
+- [hardware](https://github.com/Seong-A/safety_kick_hardware.git) 
+- [application](https://github.com/Seong-A/safety_kick.git)
+
 ## Project
 - Develop Period ( 2023.03 ~ 2023.11 )
 - Contributors ( 4 people )
@@ -14,7 +17,7 @@
 - AVD ( Pixel 4 )
 - Database ( Firebase )
 
-## Hardware
+## [Hardware](https://github.com/Seong-A/safety_kick_hardware.git)
 - Breathalyzer test function ( Arduino uno, MQ-3, buzzer, battery )
 - Multi-passage prevention function ( Arduino uno, Illuminance sensor, LED, buzzer, battery )
 
@@ -35,7 +38,7 @@
 
 - System
 
-<img src="https://github.com/Seong-A/safety_kick/assets/83965377/25cfb244-4798-4796-a950-fd4946c3194f">
+<img src="https://github.com/Seong-A/safety_kick/assets/83965377/0023d3d0-b010-4089-8e65-d2ba617a0304">
 
 ## Flow Chart
 <img src="https://github.com/Seong-A/safety_kick/assets/83965377/f0644727-6159-4432-b595-a8dff4cc94d3">
