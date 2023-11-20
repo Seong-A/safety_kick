@@ -38,7 +38,8 @@
 
 - System
 
-<img src="https://github.com/Seong-A/safety_kick/assets/83965377/0023d3d0-b010-4089-8e65-d2ba617a0304">
+<img src="https://github.com/Seong-A/safety_kick/assets/83965377/1efbce6c-cf0f-4c13-be63-85e52805670d">
+
 
 ## Flow Chart
 <img src="https://github.com/Seong-A/safety_kick/assets/83965377/f0644727-6159-4432-b595-a8dff4cc94d3">
