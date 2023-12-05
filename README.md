@@ -56,7 +56,7 @@
 
 |ServiceCenter|MapAPI|QRScan|Alcohol|
 |:---:|:---:|:---:|:---:|
-|<img width="214" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/5928db46-e404-4d56-8235-48f6b6302649">|<img width="214" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/1a84dccb-c7b2-4cf3-b9ce-56f322e6e091">|<img width="214" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/44f0a350-9d16-445a-84a0-5944c93459c5">|<img width="214" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/70f744d8-ae70-4fcd-b3fc-1bfe3927ca0d">|
+|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/5928db46-e404-4d56-8235-48f6b6302649">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/1a84dccb-c7b2-4cf3-b9ce-56f322e6e091">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/44f0a350-9d16-445a-84a0-5944c93459c5">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/70f744d8-ae70-4fcd-b3fc-1bfe3927ca0d">|
 
 |Helmet|MultipleRide|Rent|Return|
 |:---:|:---:|:---:|:---:|
@@ -64,7 +64,7 @@
 
 |Payment|PaymentList|RunList|
 |:---:|:---:|:---:|
-|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/cd9f7a7f-168f-4710-98b0-51b870c88a46">|<img width="214" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/0ac39d4b-c711-452c-8efa-a080b01d7abf">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/6c4f24cb-61f6-43d2-aff1-acdd6d1ebe3b">|
+|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/cd9f7a7f-168f-4710-98b0-51b870c88a46">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/0ac39d4b-c711-452c-8efa-a080b01d7abf">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/6c4f24cb-61f6-43d2-aff1-acdd6d1ebe3b">|
 
 ## Contributors
 
