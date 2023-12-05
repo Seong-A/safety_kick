@@ -66,4 +66,11 @@
 |:---:|:---:|:---:|
 |<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/cd9f7a7f-168f-4710-98b0-51b870c88a46">|<img width="214" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/0ac39d4b-c711-452c-8efa-a080b01d7abf">|<img width="213" alt="image" src="https://github.com/Seong-A/safety_kick/assets/83965377/6c4f24cb-61f6-43d2-aff1-acdd6d1ebe3b">|
 
+## Contributors
+
+[<img width="150" alt="Contributor 1" src="https://github.com/Seong-A/safety_kick/assets/83965377/2caca8a6-8590-4e6b-a649-fd3568536487">](https://github.com/Seong-A)
+[<img width="150" alt="Contributor 2" src="https://github.com/Seong-A/safety_kick/assets/83965377/591a57d4-5e9c-4e90-ae50-9dbc0791a6b9">](https://github.com/chaeseo)
+[<img width="150" alt="Contributor 3" src="https://github.com/Seong-A/safety_kick/assets/83965377/53f22d42-017a-4522-ba5b-4dddc4227458">](https://github.com/grace612)
+[<img width="150" alt="Contributor 4" src="https://github.com/Seong-A/safety_kick/assets/83965377/cf8a1ffb-ba8e-40bf-9e18-7f6eead0c56d">](https://github.com/kyungchan0616)
+
 
